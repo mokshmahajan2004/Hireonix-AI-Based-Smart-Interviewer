@@ -9,12 +9,14 @@ import StartInterview from './pages/StartInterview';
 import ResumeScreening from './pages/ResumeScreening';
 import PastInterviews from './pages/PastInterviews';
 import Contact from './pages/Contact';
+import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function AppWrapper() {
   const location = useLocation();
 
-  // Define all routes where you want to show the navbar
+  // Define all routes where you want to show the navbar and footer
   const showNavbarRoutes = [
     '/',
     '/login',
@@ -41,7 +43,9 @@ function AppWrapper() {
         <Route path="/resume-screening" element={<ResumeScreening />} />
         <Route path="/past-interviews" element={<PastInterviews />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
+      {showNavbar && <Footer />}
     </>
   );
 }
