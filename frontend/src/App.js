@@ -10,6 +10,10 @@ import ResumeScreening from './pages/ResumeScreening';
 import PastInterviews from './pages/PastInterviews';
 import Contact from './pages/Contact';
 import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ResumeInfo from './pages/ResumeInfo';
+import MockInterviewInfo from './pages/MockInterviewInfo';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { handleGoogleLogin } from './Config';
@@ -17,14 +21,16 @@ import { handleGoogleLogin } from './Config';
 function AppWrapper() {
   const location = useLocation();
 
-  // Define all routes where you want to show the navbar and footer
+  // Show navbar/footer on these pages
   const showNavbarRoutes = [
     '/',
     '/login',
     '/register',
     '/contact',
     '/about',
-    '/services'
+    '/services',
+    '/resume-info',
+    '/mock-interview-info',
   ];
   const showNavbar = showNavbarRoutes.includes(location.pathname);
 
@@ -45,6 +51,9 @@ function AppWrapper() {
         <Route path="/past-interviews" element={<PastInterviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/resume-info" element={<ResumeInfo />} />
+        <Route path="/mock-interview-info" element={<MockInterviewInfo />} />
       </Routes>
       {showNavbar && <Footer />}
     </>
