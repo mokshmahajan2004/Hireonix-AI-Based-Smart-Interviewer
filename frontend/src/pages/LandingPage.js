@@ -1,96 +1,158 @@
-// src/pages/LandingPage.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  const block1 = [
+    'import React from "react";',
+    'import InterviewBot from "./InterviewBot";',
+    'import Feedback from "./Feedback";',
+    '',
+    'function App() {',
+    '  return (',
+    '    <div>',
+    '      <InterviewBot />',
+    '      <Feedback />',
+    '    </div>',
+    '  );',
+    '}',
+  ];
+
+  const block2 = [
+    'const feedback = {',
+    '  confidence: "4.5 / 5",',
+    '  fluency: "Excellent",',
+    '  clarity: "Good",',
+    '  suggestion: "Summarize better."', 
+    '};',
+    '',
+    'console.log(feedback);',
+  ];
+
+  const [typedBlock1, setTypedBlock1] = useState([]);
+  const [typedBlock2, setTypedBlock2] = useState([]);
+  const [loopCount, setLoopCount] = useState(0);
+
+  // Loop Block 1
+  useEffect(() => {
+    let i = 0;
+    const typeBlock1 = () => {
+      if (i < block1.length) {
+        setTypedBlock1(prev => [...prev, block1[i]]);
+        i++;
+        setTimeout(typeBlock1, 200);
+      } else {
+        setTimeout(() => {
+          setTypedBlock1([]);
+          setTypedBlock2([]);
+          setLoopCount(prev => prev + 1); // triggers block2 again
+        }, 2000);
+      }
+    };
+    typeBlock1();
+  }, [loopCount]);
+
+  // Loop Block 2
+  useEffect(() => {
+    let j = 0;
+    const typeBlock2 = () => {
+      if (j < block2.length) {
+        setTypedBlock2(prev => [...prev, block2[j]]);
+        j++;
+        setTimeout(typeBlock2, 200);
+      }
+    };
+    typeBlock2();
+  }, [loopCount]);
+
   return (
-    <div className="bg-gradient-to-b from-indigo-100 to-blue-200 font-sans">
-      {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-40">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
-          Practice Smart. Perform Better.
+    <div className="bg-[#020617] text-white font-sans">
+      {/* HERO SECTION */}
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-10">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight pt-20">
+          Practice Smart. <span className="text-yellow-400">Perform Better.</span>
         </h1>
-        <p className="text-lg text-gray-700 max-w-2xl mb-8">
-          Ace your next interview with AI-powered mock interviews, instant feedback, and resume screening. Designed for students, job seekers, and professionals.
+        <p className="text-lg text-gray-300 max-w-2xl mb-8">
+          Ace your next interview with AI-powered mock interviews, instant feedback, and resume screening — designed for students, job seekers, and professionals.
         </p>
         <button
           onClick={() => navigate('/login')}
-          className="bg-indigo-600 text-white px-8 py-4 rounded-xl shadow-lg text-lg hover:bg-indigo-700 transition duration-300"
+          className="bg-yellow-400 text-black px-8 py-4 rounded-xl font-semibold hover:bg-yellow-500 transition duration-300"
         >
           Get Started
         </button>
-      </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-8 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-indigo-700 mb-6">About Us</h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Our mission is to empower individuals with personalized, AI-driven interview experiences that mimic real-world scenarios. Whether you're preparing for your first internship or aiming for a leadership role, Smart Interviewer helps you gain confidence, improve communication, and track your progress.
-          </p>
+        {/* VIDEO SECTION */}
+        <div className="mt-12 rounded-lg overflow-hidden shadow-2xl max-w-4xl w-full ring-4 ring-cyan-500/20">
+          <video
+            src="/assets/videos/demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-auto object-cover"
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-8 bg-indigo-50">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-indigo-700 mb-12">Our Services</h2>
-          <div className="grid md:grid-cols-3 gap-8 text-left">
-            <div className="bg-white p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-indigo-700 mb-2">AI Mock Interviews</h3>
-              <p className="text-gray-600">Answer curated questions, get evaluated on soft skills, and receive improvement tips instantly.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-indigo-700 mb-2">Resume Screening</h3>
-              <p className="text-gray-600">Upload your resume and let our AI match it against job requirements to show compatibility and suggestions.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-indigo-700 mb-2">Performance Tracking</h3>
-              <p className="text-gray-600">Access your past interviews, feedback, and progress to help you prepare smarter over time.</p>
-            </div>
+      {/* ALTERNATING CODE SECTION */}
+      <section className="px-6 md:px-16 mt-28 space-y-24">
+        {/* Row 1: Text Left, Code Right */}
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">
+              Boost your <span className="text-cyan-400">interview confidence</span>
+            </h2>
+            <p className="text-gray-400 mb-6">
+              Train with real-time AI feedback, simulate technical rounds, and build skills from your browser.
+            </p>
+            <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-semibold hover:bg-yellow-500 transition">
+              Start Practicing →
+            </button>
+          </div>
+
+          <div className="bg-[#0f172a] text-green-300 font-mono text-sm p-6 rounded-lg shadow-lg border border-gray-700 w-full min-h-[300px]">
+            {typedBlock1.map((line, index) => (
+              <div key={index} className="flex">
+                <span className="w-6 text-gray-500">{index + 1}</span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2: Code Left, Text Right */}
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+          <div className="bg-[#0f172a] text-yellow-300 font-mono text-sm p-6 rounded-lg shadow-lg border border-gray-700 w-full min-h-[200px]">
+            {typedBlock2.map((line, index) => (
+              <div key={index} className="flex">
+                <span className="w-6 text-gray-500">{index + 1}</span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="md:pl-10">
+            <h2 className="text-4xl font-bold mb-4">
+              Real-time <span className="text-yellow-400">AI Feedback</span>
+            </h2>
+            <p className="text-gray-400 mb-6">
+              Get detailed reports on clarity, fluency, confidence and receive smart suggestions after each interview round.
+            </p>
+            <button className="bg-gray-800 border border-gray-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-gray-700 transition">
+              Learn More →
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Footer */}
-      <footer className="bg-indigo-700 text-white py-12 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Smart Interviewer</h3>
-            <p className="text-sm">Your AI-powered companion for mock interviews, resume evaluation, and skill tracking.</p>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold mb-2">Quick Links</h4>
-            <ul className="space-y-1 text-sm">
-              <li><a href="#hero" className="hover:underline">Home</a></li>
-              <li><a href="#about" className="hover:underline">About</a></li>
-              <li><a href="#services" className="hover:underline">Services</a></li>
-              <li><a href="/login" className="hover:underline">Login</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold mb-2">Contact</h4>
-            <p className="text-sm">Email: support@smartinterviewer.com</p>
-            <p className="text-sm">Phone: +91 98765 43210</p>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold mb-2">Follow Us</h4>
-            <div className="flex space-x-4 text-sm">
-              <a href="#" className="hover:underline">LinkedIn</a>
-              <a href="#" className="hover:underline">Twitter</a>
-              <a href="#" className="hover:underline">Instagram</a>
-            </div>
-          </div>
-        </div>
-        <div className="text-center text-sm text-gray-200 mt-10">
-          © {new Date().getFullYear()} Smart Interviewer. All rights reserved.
-        </div>
-      </footer>
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 };

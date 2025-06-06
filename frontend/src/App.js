@@ -8,13 +8,21 @@ import Dashboard from './pages/Dashboard';
 import StartInterview from './pages/StartInterview';
 import ResumeScreening from './pages/ResumeScreening';
 import PastInterviews from './pages/PastInterviews';
+import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 
 function AppWrapper() {
   const location = useLocation();
 
   // Define all routes where you want to show the navbar
-  const showNavbarRoutes = ['/', '/login', '/register'];
+  const showNavbarRoutes = [
+    '/',
+    '/login',
+    '/register',
+    '/contact',
+    '/about',
+    '/services'
+  ];
   const showNavbar = showNavbarRoutes.includes(location.pathname);
 
   useEffect(() => {
@@ -32,6 +40,7 @@ function AppWrapper() {
         <Route path="/start-interview" element={<StartInterview />} />
         <Route path="/resume-screening" element={<ResumeScreening />} />
         <Route path="/past-interviews" element={<PastInterviews />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   );
