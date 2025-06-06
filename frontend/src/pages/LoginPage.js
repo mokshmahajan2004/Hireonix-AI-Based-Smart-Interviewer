@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import { handleGoogleLogin, handleEmailPasswordLogin } from '../Config';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -9,16 +10,24 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Login with:', { email, password });
-    navigate('/dashboard');
+    const success = await handleEmailPasswordLogin(email, password, setError);
+    if (success) {
+      navigate('/dashboard');
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("Signing in with Google...");
+  const [error, setError] = useState('');
+
+  const handleGoogleSignIn = async () => {
+  const success = await handleGoogleLogin(setError);
+  if (success !== false) {
     navigate('/dashboard');
-  };
+  }
+};
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
@@ -26,6 +35,12 @@ const LoginPage = () => {
         <h2 className="text-3xl font-bold text-center mb-6">Welcome Back</h2>
 
         <form onSubmit={handleLogin} className="space-y-5">
+          {/* Error Message */}
+          {error && (
+            <div className="text-red-400 text-sm text-center font-medium">
+              {error}
+            </div>
+          )}
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm mb-1 text-white">
@@ -82,7 +97,7 @@ const LoginPage = () => {
 
         {/* Google Sign-In */}
         <button
-          onClick={handleGoogleSignIn}
+          onClick={() => handleGoogleLogin(setError)}
           className="w-full py-2 flex items-center justify-center gap-3 border border-[#3b3e5e] bg-[#232334] hover:bg-[#2e2e44] transition-all rounded-lg"
         >
           <FcGoogle size={20} />

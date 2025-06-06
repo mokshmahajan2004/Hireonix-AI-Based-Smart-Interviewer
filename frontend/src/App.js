@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { handleGoogleLogin } from './Config';
 
 function AppWrapper() {
   const location = useLocation();
