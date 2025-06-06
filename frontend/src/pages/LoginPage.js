@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate, Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -10,52 +11,88 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // TODO: Add real auth logic
     console.log('Login with:', { email, password });
     navigate('/dashboard');
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full mb-4 px-4 py-2 border rounded"
-          />
+  const handleGoogleSignIn = () => {
+    console.log("Signing in with Google...");
+    navigate('/dashboard');
+  };
 
-          <div className="relative mb-4">
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
+      <div className="w-full max-w-md bg-[#1e1e2f] text-white rounded-2xl shadow-xl p-8 border border-[#3b3e5e]">
+        <h2 className="text-3xl font-bold text-center mb-6">Welcome Back</h2>
+
+        <form onSubmit={handleLogin} className="space-y-5">
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-sm mb-1 text-white">
+              Email <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 rounded-lg bg-[#232334] border border-[#3b3e5e] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="relative">
+            <label htmlFor="password" className="block text-sm mb-1 text-white">
+              Password <span className="text-red-500">*</span>
+            </label>
             <input
               type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
+              id="password"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 border rounded pr-10"
+              className="w-full px-4 py-2 pr-10 rounded-lg bg-[#232334] border border-[#3b3e5e] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <div
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+              className="absolute inset-y-0 right-3 top-10 flex items-center text-gray-400 cursor-pointer"
             >
               {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
             </div>
           </div>
 
+          {/* Main Login Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className="w-full py-2 bg-blue-500 hover:bg-blue-600 transition-all duration-300 rounded-lg text-white font-medium"
           >
             Login
           </button>
         </form>
-        <p className="mt-4 text-sm text-center">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:underline">
+
+        {/* Divider */}
+        <div className="flex items-center my-5">
+          <hr className="flex-grow border-gray-600" />
+          <span className="px-3 text-gray-400 text-sm">or</span>
+          <hr className="flex-grow border-gray-600" />
+        </div>
+
+        {/* Google Sign-In */}
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full py-2 flex items-center justify-center gap-3 border border-[#3b3e5e] bg-[#232334] hover:bg-[#2e2e44] transition-all rounded-lg"
+        >
+          <FcGoogle size={20} />
+          <span className="text-white font-medium">Sign in with Google</span>
+        </button>
+
+        {/* Register Link */}
+        <p className="mt-6 text-sm text-center text-gray-400">
+          Don’t have an account?{' '}
+          <Link to="/register" className="text-blue-400 hover:underline">
             Register here
           </Link>
         </p>

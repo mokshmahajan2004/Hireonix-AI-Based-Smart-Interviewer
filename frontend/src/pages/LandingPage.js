@@ -69,7 +69,7 @@ const LandingPage = () => {
   }, [loopCount]);
 
   return (
-    <div className="bg-[#020617] text-white font-sans">
+    <div className="bg-[#020617] text-white font-sans pb-12">
       {/* HERO SECTION */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-10">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight pt-20">
@@ -150,9 +150,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <Footer />
     </div>
   );
 };
