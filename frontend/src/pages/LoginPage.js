@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useNavigate, Link } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
-import { handleGoogleLogin, handleEmailPasswordLogin } from '../Config';
+import { useNavigate, Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { handleGoogleLogin, handleEmailPasswordLogin } from "../Config";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-   const handleLogin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const success = await handleEmailPasswordLogin(email, password, setError);
     if (success) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
   };
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleGoogleSignIn = async () => {
-  const success = await handleGoogleLogin(setError);
-  if (success !== false) {
-    navigate('/dashboard');
-  }
-};
-
-
+    const success = await handleGoogleLogin(setError);
+    if (success !== false) {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
@@ -63,7 +61,7 @@ const LoginPage = () => {
               Password <span className="text-red-500">*</span>
             </label>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="••••••••"
               value={password}
@@ -75,7 +73,11 @@ const LoginPage = () => {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute inset-y-0 right-3 top-10 flex items-center text-gray-400 cursor-pointer"
             >
-              {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              {showPassword ? (
+                <AiOutlineEyeInvisible size={20} />
+              ) : (
+                <AiOutlineEye size={20} />
+              )}
             </div>
           </div>
 
@@ -97,7 +99,7 @@ const LoginPage = () => {
 
         {/* Google Sign-In */}
         <button
-          onClick={() => handleGoogleLogin(setError)}
+          onClick={handleGoogleSignIn}
           className="w-full py-2 flex items-center justify-center gap-3 border border-[#3b3e5e] bg-[#232334] hover:bg-[#2e2e44] transition-all rounded-lg"
         >
           <FcGoogle size={20} />
@@ -106,7 +108,7 @@ const LoginPage = () => {
 
         {/* Register Link */}
         <p className="mt-6 text-sm text-center text-gray-400">
-          Don’t have an account?{' '}
+          Don’t have an account?{" "}
           <Link to="/register" className="text-blue-400 hover:underline">
             Register here
           </Link>

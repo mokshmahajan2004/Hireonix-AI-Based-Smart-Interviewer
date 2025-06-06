@@ -1,13 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../Config"; // Adjust path based on your project structure
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Close dropdown when clicking elsewhere (optional enhancement)
   const handleDropdownClick = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleLoginClick = () => {
+    const user = auth.currentUser;
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -20,8 +30,12 @@ function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8 font-medium relative">
-          <Link to="/" className="hover:text-yellow-400 transition">Home</Link>
-          <Link to="/about" className="hover:text-yellow-400 transition">About Us</Link>
+          <Link to="/" className="hover:text-yellow-400 transition">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-yellow-400 transition">
+            About Us
+          </Link>
 
           {/* Dropdown */}
           <div className="relative">
@@ -31,13 +45,19 @@ function Navbar() {
             >
               Services
               <svg
-                className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  isDropdownOpen ? "rotate-180" : "rotate-0"
+                }`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
@@ -61,17 +81,19 @@ function Navbar() {
             )}
           </div>
 
-          <Link to="/contact" className="hover:text-yellow-400 transition">Contact Us</Link>
+          <Link to="/contact" className="hover:text-yellow-400 transition">
+            Contact Us
+          </Link>
         </div>
 
         {/* Auth Buttons */}
         <div className="hidden md:flex space-x-4">
-          <Link
-            to="/login"
+          <button
+            onClick={handleLoginClick}
             className="border border-yellow-400 text-yellow-400 px-4 py-2 rounded hover:bg-yellow-500 hover:text-black transition"
           >
             Login
-          </Link>
+          </button>
           <Link
             to="/register"
             className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition"
@@ -83,8 +105,18 @@ function Navbar() {
         {/* Hamburger Icon (Mobile) */}
         <div className="md:hidden">
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>
@@ -93,27 +125,48 @@ function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[#020617] px-6 pb-4 pt-2 space-y-2 font-medium text-white">
-          <Link to="/" className="block hover:text-yellow-400">Home</Link>
-          <Link to="/about" className="block hover:text-yellow-400">About Us</Link>
+          <Link to="/" className="block hover:text-yellow-400">
+            Home
+          </Link>
+          <Link to="/about" className="block hover:text-yellow-400">
+            About Us
+          </Link>
 
           <details className="group">
             <summary className="flex items-center justify-between cursor-pointer hover:text-yellow-400">
               <span>Services</span>
-              <span className="group-open:rotate-180 transition-transform">⌄</span>
+              <span className="group-open:rotate-180 transition-transform">
+                ⌄
+              </span>
             </summary>
             <div className="pl-4 mt-2 space-y-1">
-              <Link to="/resume-info" className="block hover:text-yellow-400">Resume Screening</Link>
-              <Link to="/mock-interview-info" className="block hover:text-yellow-400">Mock Interview</Link>
+              <Link to="/resume-info" className="block hover:text-yellow-400">
+                Resume Screening
+              </Link>
+              <Link
+                to="/mock-interview-info"
+                className="block hover:text-yellow-400"
+              >
+                Mock Interview
+              </Link>
             </div>
           </details>
 
-          <Link to="/contact" className="block hover:text-yellow-400">Contact Us</Link>
+          <Link to="/contact" className="block hover:text-yellow-400">
+            Contact Us
+          </Link>
 
           <div className="pt-2 space-y-2">
-            <Link to="/login" className="block w-full text-center border border-yellow-400 text-yellow-400 px-4 py-2 rounded hover:bg-yellow-500 hover:text-black transition">
+            <button
+              onClick={handleLoginClick}
+              className="block w-full text-center border border-yellow-400 text-yellow-400 px-4 py-2 rounded hover:bg-yellow-500 hover:text-black transition"
+            >
               Login
-            </Link>
-            <Link to="/register" className="block w-full text-center bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition">
+            </button>
+            <Link
+              to="/register"
+              className="block w-full text-center bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition"
+            >
               Sign Up
             </Link>
           </div>
