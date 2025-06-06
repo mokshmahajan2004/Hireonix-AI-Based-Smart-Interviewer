@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCiHb_REEwtdXkqHxnr8DP6Fxlv8Sp-oqQ",
@@ -16,4 +16,32 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-export {auth, googleProvider}
+// Handle GOOGLE LOGIN
+const handleGoogleLogin = async (setError) => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    console.log('Google Sign-In:', result.user);
+    setError('');
+    // Do something with result.user (like saving user info, navigating, etc.)
+  } catch (error) {
+    console.error('Google login error:', error);
+    setError('Google Sign-In failed');
+  }
+};
+
+// Handle Login Using Email and Password
+const handleEmailPasswordLogin = async (email, password, setError) => {
+  try {
+    const userCred = await signInWithEmailAndPassword(auth, email, password);
+    console.log('User signed in:', userCred.user);
+    setError('');
+    // Additional actions here (e.g., redirecting, saving session info)
+    return true;
+  } catch (error) {
+    console.error('Login error:', error.message);
+    setError('Invalid email or password');
+    return false;
+  }
+};
+
+export { auth, googleProvider, handleGoogleLogin, handleEmailPasswordLogin };
