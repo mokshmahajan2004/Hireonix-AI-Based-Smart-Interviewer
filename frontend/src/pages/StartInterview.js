@@ -1,22 +1,58 @@
-// src/pages/StartInterview.js
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
-const questions = [
+// 🧠 Full master question bank
+const masterQuestions = [
   "Tell me about yourself.",
   "Why do you want this job?",
   "What are your strengths and weaknesses?",
   "Describe a challenge you faced and how you handled it.",
-  "Where do you see yourself in 5 years?"
+  "Where do you see yourself in 5 years?",
+  "What motivates you to work?",
+  "How do you handle criticism?",
+  "Tell me about a successful project you led.",
+  "How do you prioritize tasks under pressure?",
+  "What is your biggest professional achievement?"
 ];
 
 const StartInterview = () => {
   const webcamRef = useRef(null);
   const navigate = useNavigate();
+
+  const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [responses, setResponses] = useState([]);
+  const [timer, setTimer] = useState(60);
+
+  // ⏳ Load questions from profile (on component mount)
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("interviewProfile"));
+    const questionCount = parseInt(profile?.questionCount || "5");
+
+    // Slice from masterQuestions
+    const selectedQuestions = masterQuestions.slice(0, questionCount);
+    setQuestions(selectedQuestions);
+  }, []);
+
+  // ⏱ Timer Logic (resets on question change)
+  useEffect(() => {
+    if (questions.length === 0) return;
+
+    const countdown = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 1) {
+          clearInterval(countdown);
+          handleNext(true); // auto-skip
+          return 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(countdown);
+  }, [currentIndex, questions]);
 
   const handleNext = (isSkipped = false) => {
     const currentQuestion = questions[currentIndex];
@@ -30,12 +66,21 @@ const StartInterview = () => {
 
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      setTimer(60);
     } else {
-      alert("Interview complete! You will be redirected to summary.");
       localStorage.setItem("interviewResponses", JSON.stringify(updatedResponses));
+      alert("Interview complete! You will be redirected to summary.");
       navigate("/summary");
     }
   };
+
+  if (questions.length === 0) {
+    return (
+      <div className="text-white flex justify-center items-center min-h-screen text-xl">
+        Loading interview questions...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] px-4 py-12 md:px-10 text-white">
@@ -63,7 +108,7 @@ const StartInterview = () => {
             />
           </div>
 
-          {/* Question & Timer Card */}
+          {/* Question Card */}
           <div className="bg-gradient-to-br from-[#1f2937] to-[#111827] border border-blue-800 rounded-2xl p-6 md:p-8 shadow-lg">
             <p className="text-sm text-gray-400 mb-1">
               Question {currentIndex + 1} of {questions.length}
@@ -73,8 +118,14 @@ const StartInterview = () => {
             </h3>
 
             {/* Timer */}
-            <div className="relative w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-6">
-              <div className="absolute top-0 left-0 h-full bg-yellow-400 animate-pulseTimer w-full"></div>
+            <div className="relative w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
+              <div
+                className="absolute top-0 left-0 h-full bg-yellow-400 transition-all duration-1000 ease-linear"
+                style={{ width: `${(timer / 60) * 100}%` }}
+              ></div>
+            </div>
+            <div className="text-sm text-yellow-300 text-right mb-6">
+              ⏱️ {timer}s remaining
             </div>
 
             <div className="flex justify-end gap-4">

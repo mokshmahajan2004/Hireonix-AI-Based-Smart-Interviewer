@@ -23,6 +23,7 @@ const PreInterviewForm = () => {
     experience: "",
     achievements: "",
     notes: "",
+    questionCount: ""
   });
 
   const [roleInput, setRoleInput] = useState("");
@@ -44,6 +45,8 @@ const PreInterviewForm = () => {
     if (!formData.email.trim()) newErrors.email = "Email is required.";
     if (!roleInput.trim()) newErrors.role = "Please enter your desired role.";
     if (formData.skills.length === 0) newErrors.skills = "Add at least one skill.";
+    if (!formData.questionCount || formData.questionCount < 1 || formData.questionCount > 20)
+      newErrors.questionCount = "Enter a number between 1 and 20.";
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -78,6 +81,7 @@ const PreInterviewForm = () => {
             className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
+          {/* Email */}
           <div>
             <label className="block text-sm mb-1 text-gray-400">
               Email <span className="text-red-500">*</span>
@@ -95,6 +99,7 @@ const PreInterviewForm = () => {
             {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
 
+          {/* Role Input */}
           <div>
             <label className="block text-sm mb-1 text-gray-400">
               Role <span className="text-red-500">*</span>
@@ -162,6 +167,7 @@ const PreInterviewForm = () => {
             </div>
           </div>
 
+          {/* ✅ SKILLS INPUT */}
           <div>
             <label className="block text-sm mb-1 text-gray-400">
               Key Skills <span className="text-red-500">*</span>
@@ -278,6 +284,7 @@ const PreInterviewForm = () => {
             )}
           </div>
 
+          {/* Experience, Achievements, Notes */}
           <input
             type="text"
             name="experience"
@@ -286,7 +293,6 @@ const PreInterviewForm = () => {
             onChange={handleChange}
             className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
           <textarea
             name="achievements"
             rows="3"
@@ -295,7 +301,6 @@ const PreInterviewForm = () => {
             onChange={handleChange}
             className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
-
           <textarea
             name="notes"
             rows="2"
@@ -304,6 +309,28 @@ const PreInterviewForm = () => {
             onChange={handleChange}
             className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
+
+          {/* 🔥 Question Count */}
+          <div>
+            <label className="block text-sm mb-1 text-gray-400">
+              Number of Questions <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="number"
+              name="questionCount"
+              min="1"
+              max="20"
+              placeholder="e.g. 5 or 10"
+              value={formData.questionCount}
+              onChange={handleChange}
+              className={`bg-[#0f172a] border ${
+                errors.questionCount ? "border-red-500" : "border-gray-600"
+              } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
+            />
+            {errors.questionCount && (
+              <p className="text-red-400 text-sm mt-1">{errors.questionCount}</p>
+            )}
+          </div>
 
           <button
             type="submit"
