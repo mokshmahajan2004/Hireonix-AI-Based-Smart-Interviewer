@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../Config"; // Adjust path as per your project
+import { auth } from "../Config"; // Adjust path as needed
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Dashboard = () => {
       title: "Start Interview",
       description:
         "Begin a new AI-powered mock interview session and test your readiness in real-world scenarios.",
-      route: "/start-interview",
+      route: "/pre-interview", // ✅ updated to go to pre-interview
       icon: "🗣️",
     },
     {

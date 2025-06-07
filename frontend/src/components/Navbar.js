@@ -62,17 +62,17 @@ function Navbar() {
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute top-10 left-0 bg-white text-black rounded-md shadow-lg py-2 w-52 z-20">
+              <div className="absolute top-10 left-0 bg-white text-black rounded-md shadow-lg py-2 w-52 z-20 bg-yellow-400">
                 <Link
                   to="/resume-info"
-                  className="block px-4 py-2 hover:bg-gray-100"
+                  className="block px-4 py-2 hover:bg-yellow-500"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Resume Screening
                 </Link>
                 <Link
                   to="/mock-interview-info"
-                  className="block px-4 py-2 hover:bg-gray-100"
+                  className="block px-4 py-2 hover:bg-yellow-500"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Mock Interview
