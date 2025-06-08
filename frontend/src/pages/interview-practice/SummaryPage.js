@@ -27,7 +27,7 @@ const SummaryPage = () => {
     const profile = JSON.parse(localStorage.getItem("interviewProfile")) || {};
     const storedResponses = JSON.parse(localStorage.getItem("interviewResponses")) || [];
 
-    const totalQuestions = parseInt(profile?.questionCount) || storedResponses.length;
+    const totalQuestions = storedResponses.length;
     const filledResponses = [...storedResponses];
 
     while (filledResponses.length < totalQuestions) {

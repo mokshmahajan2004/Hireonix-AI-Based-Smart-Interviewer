@@ -6,20 +6,19 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landing-page-navbar/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
-import PreInterviewForm from "./pages/PreInterviewForm";
-import StartInterview from "./pages/StartInterview";
+import PreInterviewForm from "./pages/interview-practice/PreInterviewForm";
+import StartInterview from "./pages/interview-practice/StartInterview";
 import ResumeScreening from "./pages/ResumeScreening";
 import PastInterviews from "./pages/PastInterviews";
-import Contact from "./pages/Contact";
-import AboutPage from "./pages/AboutPage";
-import ServicesPage from "./pages/ServicesPage";
-import ResumeInfo from "./pages/ResumeInfo";
-import MockInterviewInfo from "./pages/MockInterviewInfo";
-import SummaryPage from './pages/SummaryPage';
+import Contact from "./pages/landing-page-navbar/Contact";
+import AboutPage from "./pages/landing-page-navbar/AboutPage";
+import ResumeInfo from "./pages/landing-page-navbar/services/ResumeInfo";
+import MockInterviewInfo from "./pages/landing-page-navbar/services/MockInterviewInfo";
+import SummaryPage from './pages/interview-practice/SummaryPage';
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -58,7 +57,6 @@ function AppWrapper() {
         <Route path="/past-interviews" element={<PastInterviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/services" element={<ServicesPage />} />
         <Route path="/resume-info" element={<ResumeInfo />} />
         <Route path="/mock-interview-info" element={<MockInterviewInfo />} />
         <Route path="/summary" element={<SummaryPage />} />
