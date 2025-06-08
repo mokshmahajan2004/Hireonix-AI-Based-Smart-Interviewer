@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../Config"; // Adjust if the path is different
+import aiVideo from "../../assets/ai.mp4";
 
 const block1 = [
   'import React from "react";',
@@ -98,15 +99,16 @@ const LandingPage = () => {
         {/* VIDEO SECTION */}
         <div className="mt-12 rounded-lg overflow-hidden shadow-2xl max-w-4xl w-full ring-4 ring-cyan-500/20">
           <video
-            src="/assets/videos/demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-auto object-cover"
-          >
-            Your browser does not support the video tag.
-          </video>
+  src={aiVideo}
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full h-auto object-cover"
+>
+  Your browser does not support the video tag.
+</video>
+
         </div>
       </section>
 
