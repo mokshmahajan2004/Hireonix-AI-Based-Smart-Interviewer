@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
-import "../index.css";
+import "../../index.css";
 
 // 🧠 Full master question bank
 const masterQuestions = [
@@ -27,14 +27,12 @@ const StartInterview = () => {
   const [timer, setTimer] = useState(60);
 
   // ⏳ Load questions from profile (on component mount)
-  useEffect(() => {
-    const profile = JSON.parse(localStorage.getItem("interviewProfile"));
-    const questionCount = parseInt(profile?.questionCount || "5");
-
-    // Slice from masterQuestions
-    const selectedQuestions = masterQuestions.slice(0, questionCount);
-    setQuestions(selectedQuestions);
-  }, []);
+useEffect(() => {
+  const shuffled = [...masterQuestions].sort(() => 0.5 - Math.random());
+  const randomCount = Math.floor(Math.random() * 6) + 5; // 5 to 10
+  const selectedQuestions = shuffled.slice(0, randomCount);
+  setQuestions(selectedQuestions);
+}, []);
 
   // ⏱ Timer Logic (resets on question change)
   useEffect(() => {

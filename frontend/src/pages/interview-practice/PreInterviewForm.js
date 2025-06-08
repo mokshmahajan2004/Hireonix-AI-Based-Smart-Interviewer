@@ -23,7 +23,6 @@ const PreInterviewForm = () => {
     experience: "",
     achievements: "",
     notes: "",
-    questionCount: ""
   });
 
   const [roleInput, setRoleInput] = useState("");
@@ -45,8 +44,6 @@ const PreInterviewForm = () => {
     if (!formData.email.trim()) newErrors.email = "Email is required.";
     if (!roleInput.trim()) newErrors.role = "Please enter your desired role.";
     if (formData.skills.length === 0) newErrors.skills = "Add at least one skill.";
-    if (!formData.questionCount || formData.questionCount < 1 || formData.questionCount > 20)
-      newErrors.questionCount = "Enter a number between 1 and 20.";
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -309,28 +306,6 @@ const PreInterviewForm = () => {
             onChange={handleChange}
             className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
-
-          {/* 🔥 Question Count */}
-          <div>
-            <label className="block text-sm mb-1 text-gray-400">
-              Number of Questions <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="questionCount"
-              min="1"
-              max="20"
-              placeholder="e.g. 5 or 10"
-              value={formData.questionCount}
-              onChange={handleChange}
-              className={`bg-[#0f172a] border ${
-                errors.questionCount ? "border-red-500" : "border-gray-600"
-              } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
-            />
-            {errors.questionCount && (
-              <p className="text-red-400 text-sm mt-1">{errors.questionCount}</p>
-            )}
-          </div>
 
           <button
             type="submit"
