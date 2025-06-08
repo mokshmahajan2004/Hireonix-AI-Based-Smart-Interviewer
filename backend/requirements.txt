@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+openai
+#pyttsx3
+whisper
+#sounddevice
+numpy
+scipy
+python-multipart
+pydantic
