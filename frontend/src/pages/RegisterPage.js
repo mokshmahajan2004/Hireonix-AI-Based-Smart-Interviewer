@@ -75,7 +75,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4 pt-20">
+    <div className="min-h-screen flex items-center justify-center bg-[#020617] px-4 pt-20">
       <div className="w-full max-w-2xl bg-[#1e1e2f] text-white rounded-2xl shadow-xl p-8 border border-[#3b3e5e]">
         <h2 className="text-3xl font-bold text-center mb-6">Create Account</h2>
 
