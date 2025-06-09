@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth,signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,onAuthStateChanged} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCiHb_REEwtdXkqHxnr8DP6Fxlv8Sp-oqQ",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app); // 🟩 added
 const googleProvider = new GoogleAuthProvider();
 
 // Handle GOOGLE LOGIN
@@ -44,4 +46,7 @@ const handleEmailPasswordLogin = async (email, password, setError) => {
   }
 };
 
-export { auth, googleProvider, handleGoogleLogin, handleEmailPasswordLogin };
+export {auth,db ,// added 
+googleProvider, handleGoogleLogin, handleEmailPasswordLogin ,
+onAuthStateChanged // 🟩 added
+};
