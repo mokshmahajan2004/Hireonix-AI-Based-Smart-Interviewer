@@ -10,3 +10,12 @@
 .animate-pulseTimer {
   animation: pulseTimer 60s linear forwards;
 }
+
+/* Hide horizontal scrollbar for carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}

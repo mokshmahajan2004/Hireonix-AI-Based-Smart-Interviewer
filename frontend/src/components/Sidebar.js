@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 bg-[#1e293b] p-6 flex flex-col justify-between fixed left-0 top-0 bottom-0 pt-24 shadow-lg">
+    <aside className="w-64 bg-[#0f172a] p-6 flex flex-col justify-between fixed left-0 top-0 bottom-0 pt-24 shadow-lg">
       <div className="flex flex-col items-center space-y-4">
         <img
           src=""

@@ -35,7 +35,7 @@ const Dashboard = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 px-6 pt-24 pb-16">
+      <main className="flex-1 ml-64 px-6 pt-24 pb-16 bg-[#020617]">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-extrabold text-center mb-2">
             Welcome Back, Candidate 👋
@@ -50,7 +50,7 @@ const Dashboard = () => {
               <div
                 key={index}
                 onClick={() => navigate(card.route)}
-                className="cursor-pointer bg-[#1e293b] border border-gray-700 hover:border-yellow-400 p-6 rounded-2xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+                className="cursor-pointer bg-[#0f172a] border border-gray-700 hover:border-yellow-400 p-6 rounded-2xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
               >
                 <div className="text-5xl mb-4">{card.icon}</div>
                 <h2 className="text-2xl font-semibold text-yellow-400 mb-2">
@@ -66,7 +66,7 @@ const Dashboard = () => {
             ))}
           </div>
 
-          <div className="mt-16 bg-[#1e293b] border border-gray-700 rounded-xl p-6 text-center shadow-md">
+          <div className="mt-16 bg-[#0f172a] border border-gray-700 rounded-xl p-6 text-center shadow-md">
             <h3 className="text-xl font-bold text-white mb-2">
               Your Progress Overview
             </h3>

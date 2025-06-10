@@ -90,25 +90,31 @@ const PreInterviewForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] px-4 py-12 flex items-center justify-center text-white font-sans">
-      <div className="w-full max-w-3xl bg-[#1e293b] border border-blue-800 rounded-3xl shadow-2xl p-10">
-        <h2 className="text-4xl font-extrabold text-center text-blue-400 mb-3">
+<div className="min-h-screen bg-[#020617] px-6 py-16 flex items-center justify-center text-white font-sans">
+  <div className="w-full max-w-4xl bg-[#0f172a] rounded-3xl border border-gray-700 shadow-2xl p-10">
+    <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-2">
           📝 Pre-Interview Details
         </h2>
-        <p className="text-center text-gray-400 mb-8 text-sm">
+    <p className="text-center text-gray-400 mb-10 text-sm">
           Provide your background so we can tailor the interview experience to
           you.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name (optional)"
-            value={formData.name}
-            onChange={handleChange}
-            className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+    <form onSubmit={handleSubmit} className="space-y-6">
+         {/* Name */}
+<div>
+  <label className="block text-sm mb-1 text-gray-400">
+    Name <span className="text-red-500">*</span>
+  </label>
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    value={formData.name}
+    onChange={handleChange}
+        className="bg-[#1e293b] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400"
+  />
+</div>
 
           {/* Email */}
           <div>
@@ -121,9 +127,9 @@ const PreInterviewForm = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              className={`bg-[#0f172a] border ${
-                errors.email ? "border-red-500" : "border-gray-600"
-              } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
+className={`bg-[#1e293b] border ${
+            errors.email ? "border-red-500" : "border-gray-600"
+          } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400`}
             />
             {errors.email && (
               <p className="text-red-400 text-sm mt-1">{errors.email}</p>
@@ -165,9 +171,9 @@ const PreInterviewForm = () => {
                   }
                 }}
                 placeholder="Role you're preparing for"
-                className={`bg-[#0f172a] border ${
-                  errors.role ? "border-red-500" : "border-gray-600"
-                } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
+               className={`bg-[#1e293b] border ${
+            errors.email ? "border-red-500" : "border-gray-600"
+          } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400`}
               />
               {errors.role && (
                 <p className="text-red-400 text-sm mt-1">{errors.role}</p>
@@ -201,155 +207,179 @@ const PreInterviewForm = () => {
           </div>
 
           {/* ✅ SKILLS INPUT */}
-          <div>
-            <label className="block text-sm mb-1 text-gray-400">
-              Key Skills <span className="text-red-500">*</span>
-            </label>
-            <div
-              className={`flex flex-wrap items-center gap-2 bg-[#0f172a] border ${
-                errors.skills ? "border-red-500" : "border-gray-600"
-              } rounded-md px-3 py-2 relative`}
+         <div className="space-y-1">
+  <label className="block text-sm mb-1 text-gray-400">
+    Key Skills <span className="text-red-500">*</span>
+  </label>
+  <div
+    className={`flex flex-wrap items-center gap-2 bg-[#1e293b] border ${
+      errors.skills ? "border-red-500" : "border-gray-600"
+    } rounded-md px-3 py-2 relative focus-within:ring-2 focus-within:ring-blue-500`}
+  >
+    {formData.skills.map((skill, index) => (
+      <span
+        key={index}
+        className="bg-blue-600 text-white px-3 py-1 text-sm rounded-full flex items-center gap-2"
+      >
+        {skill}
+        <button
+          type="button"
+          onClick={() => {
+            setFormData((prev) => ({
+              ...prev,
+              skills: prev.skills.filter((_, i) => i !== index),
+            }));
+            setErrors((prev) => ({ ...prev, skills: "" }));
+          }}
+          className="text-white hover:text-yellow-300 text-xs"
+        >
+          ✕
+        </button>
+      </span>
+    ))}
+
+    {/* Skill typing input */}
+    <input
+      type="text"
+      value={skillInput}
+      onChange={(e) => {
+        setSkillInput(e.target.value);
+        setActiveSkillIndex(-1);
+        setErrors((prev) => ({ ...prev, skills: "" }));
+      }}
+      onKeyDown={(e) => {
+        const filtered = skillSuggestions.filter(
+          (s) =>
+            s.toLowerCase().includes(skillInput.toLowerCase()) &&
+            !formData.skills.includes(s)
+        );
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setActiveSkillIndex((prev) => (prev + 1) % filtered.length);
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setActiveSkillIndex((prev) =>
+            prev <= 0 ? filtered.length - 1 : prev - 1
+          );
+        } else if (e.key === "Enter" && activeSkillIndex >= 0) {
+          e.preventDefault();
+          const selected = filtered[activeSkillIndex];
+          setFormData((prev) => ({
+            ...prev,
+            skills: [...prev.skills, selected],
+          }));
+          setSkillInput("");
+          setActiveSkillIndex(-1);
+          setErrors((prev) => ({ ...prev, skills: "" }));
+        } else if (
+          (e.key === "Enter" || e.key === ",") &&
+          skillInput.trim()
+        ) {
+          e.preventDefault();
+          const newSkill = skillInput.trim();
+          if (!formData.skills.includes(newSkill)) {
+            setFormData((prev) => ({
+              ...prev,
+              skills: [...prev.skills, newSkill],
+            }));
+          }
+          setSkillInput("");
+          setActiveSkillIndex(-1);
+          setErrors((prev) => ({ ...prev, skills: "" }));
+        }
+      }}
+      placeholder="Type a skill and press Enter"
+className="bg-transparent flex-1 text-sm p-1 outline-none text-white placeholder-gray-500"
+    />
+
+    {/* Suggestion dropdown */}
+    {skillInput && (
+      <ul className="absolute top-full left-0 right-0 bg-[#1e293b] border border-gray-700 rounded-md mt-2 max-h-40 overflow-auto z-10">
+        {skillSuggestions
+          .filter(
+            (sugg) =>
+              sugg.toLowerCase().includes(skillInput.toLowerCase()) &&
+              !formData.skills.includes(sugg)
+          )
+          .map((sugg, index) => (
+            <li
+              key={index}
+              className={`px-4 py-2 cursor-pointer text-sm ${
+                index === activeSkillIndex
+                  ? "bg-blue-800 text-white"
+                  : "hover:bg-blue-700"
+              }`}
+              onClick={() => {
+                setFormData((prev) => ({
+                  ...prev,
+                  skills: [...prev.skills, sugg],
+                }));
+                setSkillInput("");
+                setActiveSkillIndex(-1);
+                setErrors((prev) => ({ ...prev, skills: "" }));
+              }}
             >
-              {formData.skills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="bg-blue-600 text-white px-3 py-1 text-sm rounded-full flex items-center gap-2"
-                >
-                  {skill}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData((prev) => ({
-                        ...prev,
-                        skills: prev.skills.filter((_, i) => i !== index),
-                      }));
-                      setErrors((prev) => ({ ...prev, skills: "" }));
-                    }}
-                    className="text-white hover:text-yellow-300 text-xs"
-                  >
-                    ✕
-                  </button>
-                </span>
-              ))}
-              <input
-                type="text"
-                value={skillInput}
-                onChange={(e) => {
-                  setSkillInput(e.target.value);
-                  setActiveSkillIndex(-1);
-                  setErrors((prev) => ({ ...prev, skills: "" }));
-                }}
-                onKeyDown={(e) => {
-                  const filtered = skillSuggestions.filter(
-                    (s) =>
-                      s.toLowerCase().includes(skillInput.toLowerCase()) &&
-                      !formData.skills.includes(s)
-                  );
-                  if (e.key === "ArrowDown") {
-                    e.preventDefault();
-                    setActiveSkillIndex((prev) => (prev + 1) % filtered.length);
-                  } else if (e.key === "ArrowUp") {
-                    e.preventDefault();
-                    setActiveSkillIndex((prev) =>
-                      prev <= 0 ? filtered.length - 1 : prev - 1
-                    );
-                  } else if (e.key === "Enter" && activeSkillIndex >= 0) {
-                    e.preventDefault();
-                    const selected = filtered[activeSkillIndex];
-                    setFormData((prev) => ({
-                      ...prev,
-                      skills: [...prev.skills, selected],
-                    }));
-                    setSkillInput("");
-                    setActiveSkillIndex(-1);
-                    setErrors((prev) => ({ ...prev, skills: "" }));
-                  } else if (
-                    (e.key === "Enter" || e.key === ",") &&
-                    skillInput.trim()
-                  ) {
-                    e.preventDefault();
-                    const newSkill = skillInput.trim();
-                    if (!formData.skills.includes(newSkill)) {
-                      setFormData((prev) => ({
-                        ...prev,
-                        skills: [...prev.skills, newSkill],
-                      }));
-                    }
-                    setSkillInput("");
-                    setActiveSkillIndex(-1);
-                    setErrors((prev) => ({ ...prev, skills: "" }));
-                  }
-                }}
-                placeholder="Type a skill and press Enter"
-                className="bg-transparent flex-1 text-sm p-1 outline-none text-white placeholder-gray-500"
-              />
-              {skillInput && (
-                <ul className="absolute top-full left-0 right-0 bg-[#0f172a] border border-gray-700 rounded-md mt-2 max-h-40 overflow-auto z-10">
-                  {skillSuggestions
-                    .filter(
-                      (sugg) =>
-                        sugg.toLowerCase().includes(skillInput.toLowerCase()) &&
-                        !formData.skills.includes(sugg)
-                    )
-                    .map((sugg, index) => (
-                      <li
-                        key={index}
-                        className={`px-4 py-2 cursor-pointer text-sm ${
-                          index === activeSkillIndex
-                            ? "bg-blue-800 text-white"
-                            : "hover:bg-blue-700"
-                        }`}
-                        onClick={() => {
-                          setFormData((prev) => ({
-                            ...prev,
-                            skills: [...prev.skills, sugg],
-                          }));
-                          setSkillInput("");
-                          setActiveSkillIndex(-1);
-                          setErrors((prev) => ({ ...prev, skills: "" }));
-                        }}
-                      >
-                        {sugg}
-                      </li>
-                    ))}
-                </ul>
-              )}
-            </div>
-            {errors.skills && (
-              <p className="text-red-400 text-sm mt-1">{errors.skills}</p>
-            )}
-          </div>
+              {sugg}
+            </li>
+          ))}
+      </ul>
+    )}
+  </div>
+
+  {errors.skills && (
+    <p className="text-red-400 text-sm mt-1">{errors.skills}</p>
+  )}
+</div>
+
 
           {/* Experience, Achievements, Notes */}
-          <input
-            type="text"
-            name="experience"
-            placeholder="Experience (e.g. 2 years in DevOps)"
-            value={formData.experience}
-            onChange={handleChange}
-            className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <textarea
-            name="achievements"
-            rows="3"
-            placeholder="Achievements / Projects"
-            value={formData.achievements}
-            onChange={handleChange}
-            className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-          <textarea
-            name="notes"
-            rows="2"
-            placeholder="Any other notes you'd like us to consider..."
-            value={formData.notes}
-            onChange={handleChange}
-            className="bg-[#0f172a] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
+{/* Experience */}
+<div>
+  <label className="block text-sm mb-1 text-gray-400">
+    Experience 
+  </label>
+  <input
+    type="text"
+    name="experience"
+    placeholder="Experience (e.g. 2 years in DevOps)"
+    value={formData.experience}
+    onChange={handleChange}
+    className="bg-[#1e293b] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400"
+  />
+</div>
 
-          <button
-            type="submit"
-            className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-all"
-          >
+{/* Achievements */}
+<div>
+  <label className="block text-sm mb-1 text-gray-400">
+    Achievements / Projects
+  </label>
+  <textarea
+    name="achievements"
+    rows="3"
+    placeholder="Achievements or noteworthy projects"
+    value={formData.achievements}
+    onChange={handleChange}
+    className="bg-[#1e293b] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400"
+  ></textarea>
+</div>
+         <div>
+  <label className="block text-sm mb-1 text-gray-400">
+    Additional Notes
+  </label>
+  <textarea
+    name="notes"
+    rows="2"
+    placeholder="Any other notes you'd like us to consider..."
+    value={formData.notes}
+    onChange={handleChange}
+    className="bg-[#1e293b] border border-gray-600 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400"
+  ></textarea>
+</div>
+
+         <button
+        type="submit"
+        className="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg text-lg transition-all duration-300"
+      >
             Start Interview 🚀
           </button>
         </form>
