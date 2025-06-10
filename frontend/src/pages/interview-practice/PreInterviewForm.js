@@ -1,19 +1,39 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PreInterviewForm = () => {
   const navigate = useNavigate();
 
   const skillSuggestions = [
-    "Java", "Spring MVC", "MySQL", "GIT", "Hibernate", "JavaScript",
-    "HTML", "REST", "Thymeleaf", "CSS", "JWT security", "Gradle",
-    "Bootstrap", "jQuery", "Postman"
+    "Java",
+    "Spring MVC",
+    "MySQL",
+    "GIT",
+    "Hibernate",
+    "JavaScript",
+    "HTML",
+    "REST",
+    "Thymeleaf",
+    "CSS",
+    "JWT security",
+    "Gradle",
+    "Bootstrap",
+    "jQuery",
+    "Postman",
   ];
 
   const roleSuggestions = [
-    "Frontend Developer", "Backend Developer", "Full Stack Developer",
-    "Data Analyst", "Data Scientist", "ML Engineer", "DevOps Engineer",
-    "Software Tester", "System Administrator", "UI/UX Designer"
+    "Frontend Developer",
+    "Backend Developer",
+    "Full Stack Developer",
+    "Data Analyst",
+    "Data Scientist",
+    "ML Engineer",
+    "DevOps Engineer",
+    "Software Tester",
+    "System Administrator",
+    "UI/UX Designer",
   ];
 
   const [formData, setFormData] = useState({
@@ -43,7 +63,8 @@ const PreInterviewForm = () => {
     const newErrors = {};
     if (!formData.email.trim()) newErrors.email = "Email is required.";
     if (!roleInput.trim()) newErrors.role = "Please enter your desired role.";
-    if (formData.skills.length === 0) newErrors.skills = "Add at least one skill.";
+    if (formData.skills.length === 0)
+      newErrors.skills = "Add at least one skill.";
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -54,8 +75,18 @@ const PreInterviewForm = () => {
       skills: formData.skills.join(", "),
     };
 
-    localStorage.setItem("interviewProfile", JSON.stringify(savedData));
-    navigate("/start-interview");
+    axios
+      .post("http://localhost:8000/generate-questions/", savedData)
+      .then((res) => {
+        const questions = res.data.questions;
+        localStorage.setItem("interviewQuestions", JSON.stringify(questions));
+        localStorage.setItem("interviewProfile", JSON.stringify(savedData));
+        navigate("/start-interview");
+      })
+      .catch((err) => {
+        console.error("Error generating questions", err);
+        alert("Failed to generate questions. Try again.");
+      });
   };
 
   return (
@@ -65,7 +96,8 @@ const PreInterviewForm = () => {
           📝 Pre-Interview Details
         </h2>
         <p className="text-center text-gray-400 mb-8 text-sm">
-          Provide your background so we can tailor the interview experience to you.
+          Provide your background so we can tailor the interview experience to
+          you.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -93,7 +125,9 @@ const PreInterviewForm = () => {
                 errors.email ? "border-red-500" : "border-gray-600"
               } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
             />
-            {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Role Input */}
@@ -135,7 +169,9 @@ const PreInterviewForm = () => {
                   errors.role ? "border-red-500" : "border-gray-600"
                 } p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
-              {errors.role && <p className="text-red-400 text-sm mt-1">{errors.role}</p>}
+              {errors.role && (
+                <p className="text-red-400 text-sm mt-1">{errors.role}</p>
+              )}
               {roleInput && activeRoleIndex !== -2 && (
                 <ul className="absolute top-full left-0 right-0 bg-[#0f172a] border border-gray-700 rounded-md mt-1 max-h-40 overflow-auto z-10">
                   {roleSuggestions
@@ -227,7 +263,10 @@ const PreInterviewForm = () => {
                     setSkillInput("");
                     setActiveSkillIndex(-1);
                     setErrors((prev) => ({ ...prev, skills: "" }));
-                  } else if ((e.key === "Enter" || e.key === ",") && skillInput.trim()) {
+                  } else if (
+                    (e.key === "Enter" || e.key === ",") &&
+                    skillInput.trim()
+                  ) {
                     e.preventDefault();
                     const newSkill = skillInput.trim();
                     if (!formData.skills.includes(newSkill)) {
