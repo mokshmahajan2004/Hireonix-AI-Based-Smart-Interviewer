@@ -10,7 +10,7 @@ from fastapi import Body
 from services.report_generator import generate_report
 from pydantic import BaseModel
 import tempfile
-
+import os
 
 router = APIRouter()
 
@@ -26,13 +26,16 @@ def get_evaluation(data: QAInput):
 
 @router.post("/transcribe-audio")
 async def transcribe_audio_route(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
         contents = await file.read()
         tmp.write(contents)
         tmp_path = tmp.name
 
+    print("✅ Received audio file:", tmp_path)
+    print("✅ Size (bytes):", os.path.getsize(tmp_path))
     text = transcribe_audio(tmp_path)
     return {"transcription": text}
+
 
 
 
