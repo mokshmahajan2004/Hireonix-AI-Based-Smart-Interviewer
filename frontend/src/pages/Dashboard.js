@@ -35,7 +35,7 @@ const Dashboard = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 px-6 pt-24 pb-16 bg-[#020617]">
+      <main className="flex-1 transition-all duration-300 ml-16 group-hover:ml-56 px-6 pt-24 pb-16 bg-[#020617]">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-extrabold text-center mb-2">
             Welcome Back, Candidate 👋
