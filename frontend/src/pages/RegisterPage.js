@@ -40,28 +40,36 @@ const RegisterPage = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setError("");
-    if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  e.preventDefault();
+  setError("");
+  if (form.password !== form.confirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password
-      );
-      await updateProfile(userCredential.user, {
-        displayName: `${form.firstName} ${form.lastName}`,
-      });
-      navigate("/dashboard");
-    } catch (err) {
-      console.error("Registration error:", err);
-      setError(err.message);
-    }
-  };
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      form.email,
+      form.password
+    );
+
+    const fullName = `${form.firstName} ${form.lastName}`;
+
+    await updateProfile(userCredential.user, {
+      displayName: fullName,
+    });
+
+    // ✅ Store to localStorage
+    localStorage.setItem("username", fullName);
+    localStorage.setItem("photoURL", "");
+
+    navigate("/dashboard");
+  } catch (err) {
+    console.error("Registration error:", err);
+    setError(err.message);
+  }
+};
 
   const handleGoogleSignUp = async () => {
     try {
