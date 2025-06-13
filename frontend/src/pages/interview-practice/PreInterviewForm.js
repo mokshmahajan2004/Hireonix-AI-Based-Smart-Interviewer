@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Lottie from "lottie-react";
+import loaderAnimation from "../../assets/animations/yellow.json"; // ✅ Update if your path is different
 
 const PreInterviewForm = () => {
   const navigate = useNavigate();
@@ -50,6 +52,7 @@ const PreInterviewForm = () => {
   const [activeRoleIndex, setActiveRoleIndex] = useState(-1);
   const [activeSkillIndex, setActiveSkillIndex] = useState(-1);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -58,40 +61,55 @@ const PreInterviewForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
-    if (!formData.email.trim()) newErrors.email = "Email is required.";
-    if (!roleInput.trim()) newErrors.role = "Please enter your desired role.";
-    if (formData.skills.length === 0)
-      newErrors.skills = "Add at least one skill.";
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const newErrors = {};
+  if (!formData.email.trim()) newErrors.email = "Email is required.";
+  if (!roleInput.trim()) newErrors.role = "Please enter your desired role.";
+  if (formData.skills.length === 0) newErrors.skills = "Add at least one skill.";
 
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) return;
+  setErrors(newErrors);
+  if (Object.keys(newErrors).length > 0) return;
 
-    const savedData = {
-      ...formData,
-      role: roleInput,
-      skills: formData.skills.join(", "),
-    };
-
-    axios
-      .post("http://localhost:8000/generate-questions/", savedData)
-      .then((res) => {
-        const questions = res.data.questions;
-        localStorage.setItem("interviewQuestions", JSON.stringify(questions));
-        localStorage.setItem("interviewProfile", JSON.stringify(savedData));
-        navigate("/start-interview");
-      })
-      .catch((err) => {
-        console.error("Error generating questions", err);
-        alert("Failed to generate questions. Try again.");
-      });
+  const savedData = {
+    ...formData,
+    role: roleInput,
+    skills: formData.skills.join(", "),
   };
+
+  setIsLoading(true); // ✅ show loader
+
+  axios
+    .post("http://localhost:8000/generate-questions/", savedData)
+    .then((res) => {
+      const questions = res.data.questions;
+      localStorage.setItem("interviewQuestions", JSON.stringify(questions));
+      localStorage.setItem("interviewProfile", JSON.stringify(savedData));
+      navigate("/start-interview");
+    })
+    .catch((err) => {
+      console.error("Error generating questions", err);
+      alert("Failed to generate questions. Try again.");
+    })
+    .finally(() => {
+      setIsLoading(false); // stop loading if there's an error
+    });
+};
+
+
+  // ✅ Show beautiful Lottie loader while generating questions
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-white">
+        <Lottie animationData={loaderAnimation} loop={true} className="w-72 h-72" />
+        <p className="text-lg text-white-500 mt-[-40px]">Generating your interview questions...</p>
+      </div>
+    );
+  }
 
   return (
 <div className="min-h-screen bg-[#020617] px-6 py-16 flex items-center justify-center text-white font-sans">
-  <div className="w-full max-w-4xl bg-[#0f172a] rounded-3xl border border-gray-700 shadow-2xl p-10">
+  <div className="w-full max-w-4xl bg-[#020617] rounded-3xl border border-gray-700 shadow-2xl p-10">
     <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-2">
           📝 Pre-Interview Details
         </h2>

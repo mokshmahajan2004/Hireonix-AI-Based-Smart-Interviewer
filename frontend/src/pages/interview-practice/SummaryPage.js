@@ -142,8 +142,8 @@ const SummaryPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white p-8 font-sans">
-      <div className="max-w-6xl mx-auto bg-[#1e293b] p-8 rounded-xl border border-gray-700 shadow-xl">
+    <div className="min-h-screen bg-[#020617] text-white p-8 font-sans">
+      <div className="max-w-6xl mx-auto bg-[#0f172a] p-8 rounded-xl border border-gray-700 shadow-xl">
         <h2 className="text-3xl font-bold text-blue-400 mb-6 text-center">
           📊 Interview Summary Report
         </h2>
