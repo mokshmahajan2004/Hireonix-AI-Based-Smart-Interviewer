@@ -1,12 +1,12 @@
 # 🧠 AI Interview Report
     
-**Candidate:** Ananya Chauhan
-**Email:** ananyachauhan647@gmail.com
-**Role:** Frontend Developer
-**Skills:** c++
-**Experience:** 
-**Achievements:** 
-**Notes:** 
+**Candidate:** Moksh Mahajan
+**Email:** mmahajan2_be22@thapar.edu
+**Role:** SDE
+**Skills:** abc
+**Experience:** vrvr
+**Achievements:** ce v
+**Notes:** vre
     
 **Total Questions:** 12
     
@@ -14,15 +14,37 @@
 
 
 ### Question 1
-**Q:**  1. Can you tell us a little about your background and experience as a Frontend Developer?
-**A:** 
+**Q:**  1. Can you tell us a little about your experience as an SDE and the projects you have worked on so far, Moksh?
+**A:**  Can you please tell us more about the digital hardware experience as we continue to process it?
 
+ Sure, I'd be happy to help! Here's the evaluation:
 
+Question:  1. Can you tell us a little about your experience as an SDE and the projects you have worked on so far, Moksh?
+Answer:  Can you please tell us more about the digital hardware experience as we continue to process it?
+
+**Scores:**
+
+- Relevance: 1/5
+- Clarity: 2/5
+- Depth: 1/5
+- Professionalism: 2/5
+
+**Feedback and improvements:**
+
+**Question:**
+
+The question is clear and specific, asking for Moksh's experience and projects as an SDE.
+
+**Answer:**
+
+The answer does not address the question asked and instead asks for more information about digital hardware. To improve the answer, Moksh could provide a summary of their experience as an SDE, including the number of years in the role, any relevant programming languages or technologies, and a brief overview of some of the projects they have worked on. For example:
+
+"Certainly! I have been an SDE for three years, with experience in Java, Python, and React. One project I worked on was a website redesign for a major e-commerce company, where I was responsible for implementing new features and improving site performance. Another project was a data migration for a financial services client, where I wrote scripts to extract, transform, and load data from their legacy system to a new platform. I am passionate about clean code, automated testing, and finding solutions to complex problems."
 
 ---
 
 ### Question 2
-**Q:** 2. What inspired you to specialize in frontend development, and how did you get started in this field?
+**Q:** 2. How did you develop your skills in abc, and how have you applied them in your past roles?
 **A:** 
 
 
@@ -30,7 +52,7 @@
 ---
 
 ### Question 3
-**Q:** 3. Can you describe your experience working with C++, and how it has helped you in your frontend development projects?
+**Q:** 3. Can you share with us a challenging experience you faced in your career and how you overcame it?
 **A:** 
 
 
@@ -38,7 +60,7 @@
 ---
 
 ### Question 4
-**Q:** 4. What are some of the most challenging projects you have worked on as a Frontend Developer, and how did you overcome those challenges?
+**Q:** 4. Can you tell us about a project you are particularly proud of and what your role was in it?
 **A:** 
 
 
@@ -46,7 +68,7 @@
 ---
 
 ### Question 5
-**Q:** 5. Can you tell us about a time when you had to implement a particularly innovative or creative solution to a frontend development problem?
+**Q:** 5. How do you approach problem-solving and decision-making in your role as an SDE?
 **A:** 
 
 
@@ -54,7 +76,7 @@
 ---
 
 ### Question 6
-**Q:** 6. How do you stay up-to-date with the latest trends and best practices in frontend development?
+**Q:** 6. Can you share with us your experience working in a team and leading projects?
 **A:** 
 
 
@@ -62,7 +84,7 @@
 ---
 
 ### Question 7
-**Q:** 7. Can you describe your experience working with cross-functional teams, and how you ensure effective communication and collaboration?
+**Q:** 7. How do you stay up to date with the latest technology trends and developments in the field?
 **A:** 
 
 
@@ -70,7 +92,7 @@
 ---
 
 ### Question 8
-**Q:** 8. Can you tell us about any notable achievements or accomplishments in your career as a Frontend Developer?
+**Q:** 8. Can you tell us about any certifications or additional training you have undertaken to enhance your skills?
 **A:** 
 
 
@@ -78,7 +100,7 @@
 ---
 
 ### Question 9
-**Q:** 9. How do you approach accessibility and inclusivity in your frontend development projects?
+**Q:** 9. Can you share with us your achievements in ce and v projects?
 **A:** 
 
 
@@ -86,7 +108,7 @@
 ---
 
 ### Question 10
-**Q:** 10. Can you describe your experience working with responsive design and ensuring a consistent user experience across different devices and screen sizes?
+**Q:** 10. How do you handle feedback and criticism in the workplace?
 **A:** 
 
 
@@ -94,7 +116,7 @@
 ---
 
 ### Question 11
-**Q:** 11. How do you prioritize and manage your workload to ensure that projects are delivered on time and to a high standard?
+**Q:** 11. Can you tell us about a time when you had to work under a tight deadline and how you managed it?
 **A:** 
 
 
@@ -102,7 +124,7 @@
 ---
 
 ### Question 12
-**Q:** 12. Can you tell us about any open-source projects or contributions you have made to the frontend development community?
+**Q:** 12. How do you approach mentoring and supporting junior team members in their professional growth?
 **A:** 
 
 
