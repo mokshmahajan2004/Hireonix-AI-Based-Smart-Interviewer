@@ -1,5 +1,4 @@
 import whisper
-import tempfile
 import subprocess
 import os
 

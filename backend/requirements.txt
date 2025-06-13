@@ -2,7 +2,7 @@ fastapi
 uvicorn
 openai
 #pyttsx3
-whisper
+git+https://github.com/openai/whisper.git
 #sounddevice
 numpy
 scipy
