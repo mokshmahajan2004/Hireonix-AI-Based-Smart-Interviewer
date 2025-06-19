@@ -5,6 +5,7 @@ import { Check, Upload, FileText, BarChart3 } from "lucide-react";
 import Sidebar from "../components/Sidebar";
 import ResultCard from "../components/ResultCard";
 import sampleJobRolesData from "../data/sampleJobRolesData"; // dynamic job data
+import BulletRewriter from "../components/BulletRewritter";
 
 const ResumeScreening = () => {
   const [step, setStep] = useState(1);
@@ -14,13 +15,17 @@ const ResumeScreening = () => {
   const [resumeText, setResumeText] = useState("React Git REST APIs Firebase Agile Node.js");
   const [matchedKeywords, setMatchedKeywords] = useState([]);
   const [missingKeywords, setMissingKeywords] = useState([]);
+  const [rewrites, setRewrites] = useState([]);
 
-  const [llmSections, setLlmSections] = useState({
+
+  
+const [llmSections, setLlmSections] = useState({
   matchScore: "",
   missingSkills: [],
   improvementTips: [],
-  summary: ""
-  });
+  summary: "",
+  bulletRewrites: [], // 🔥 new field
+});
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -38,7 +43,6 @@ const ResumeScreening = () => {
     words.forEach((w) => (freq[w] = (freq[w] || 0) + 1));
     return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, topN).map(([word]) => word);
   };
-
 const compareSkills = () => {
   const keywords = extractKeywords(jobDesc);
   const resumeWords = resumeText.toLowerCase();
@@ -53,18 +57,36 @@ const compareSkills = () => {
   setMatchedKeywords(matched);
   setMissingKeywords(missing);
 
-  // 🔥 Mock LLM response (static for now)
+  // ✅ LLM-like mocked result
   setLlmSections({
     matchScore: "88/100 - Strong technical match, but lacks some preferred skills.",
     missingSkills: ["Git", "Figma", "RESTful APIs"],
     improvementTips: [
       "Add version control tools like Git.",
       "Mention exposure to RESTful APIs.",
-      "Include familiarity with design tools like Figma or Adobe XD."
+      "Include familiarity with design tools like Figma or Adobe XD.",
     ],
-    summary: "Your resume is technically strong and well-aligned for frontend roles. To further improve, focus on adding missing skills and quantifiable achievements."
+    summary:
+      "Your resume is technically strong and well-aligned for frontend roles. To further improve, focus on adding missing skills and quantifiable achievements.",
   });
+
+  // ✅ Set bullet rewrites
+  setRewrites([
+    {
+      original: "Used Flask APIs and React UI to achieve 92% accuracy in CNN-based landmark identification.",
+      improved: "**Improved:** Leveraged Flask APIs and React UI to drive a 92% accuracy rate in CNN-based landmark identification.",
+      showImproved: false,
+    },
+    {
+      original: "Collaborated with cross-functional teams to ensure timely and high-quality project delivery.",
+      improved: "**Improved:** Partnered with cross-functional teams to deliver high-impact solutions on time with exceptional quality.",
+      showImproved: false,
+    },
+  ]);
 };
+
+
+
 
   const highlightText = (text, matched, missing) => {
     const allWords = [...matched, ...missing].sort((a, b) => b.length - a.length);
@@ -183,38 +205,27 @@ const compareSkills = () => {
             </div>
           </motion.div>
         )}
-        {step === 3 && (
-<motion.div
-  key="step3"
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  exit={{ opacity: 0, y: -30 }}
-  transition={{ duration: 0.5 }}
-  className="max-w-5xl mx-auto px-4 sm:px-6"
->
-  <ResultCard
-    title="Match Score"
-    icon="🎯"
-    content={llmSections.matchScore}
-  />
-  <ResultCard
-    title="Critical Missing Skills"
-    icon="❌"
-    content={llmSections.missingSkills}
-  />
-  <ResultCard
-    title="How the Candidate Can Improve"
-    icon="🧠"
-    content={llmSections.improvementTips}
-  />
-  <ResultCard
-    title="Overall ATS Readiness Summary"
-    icon="📝"
-    content={llmSections.summary}
-  />
-</motion.div>
+{step === 3 && (
+  <motion.div
+    key="step3"
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -30 }}
+    transition={{ duration: 0.5 }}
+    className="max-w-5xl mx-auto px-4 sm:px-6"
+  >
+    <ResultCard title="Match Score" icon="🎯" content={llmSections.matchScore} />
+    <ResultCard title="Critical Missing Skills" icon="❌" content={llmSections.missingSkills} />
+    <ResultCard title="How the Candidate Can Improve" icon="🧠" content={llmSections.improvementTips} />
+    <ResultCard title="Additional Feedback" icon="💡" content={llmSections.summary} />
 
-        )}
+    {/* ✅ Final Working Rewriter UI */}
+    {rewrites.length > 0 && (
+      <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
+    )}
+  </motion.div>
+)}
+
       </AnimatePresence>
     </div>
         </main>
