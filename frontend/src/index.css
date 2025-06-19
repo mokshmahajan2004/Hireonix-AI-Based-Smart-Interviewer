@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @keyframes pulseTimer {
   from { width: 100%; }
   to { width: 0%; }
@@ -19,3 +20,4 @@
   -ms-overflow-style: none; 
   scrollbar-width: none;
 }
+

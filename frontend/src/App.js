@@ -4,7 +4,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import LandingPage from "./pages/landing-page-navbar/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -19,15 +19,34 @@ import AboutPage from "./pages/landing-page-navbar/AboutPage";
 import ResumeInfo from "./pages/landing-page-navbar/services/ResumeInfo";
 import MockInterviewInfo from "./pages/landing-page-navbar/services/MockInterviewInfo";
 import SummaryPage from './pages/interview-practice/SummaryPage';
-import EditProfile from "./pages/EditProfile"; // ✅ Added
+import EditProfile from "./pages/EditProfile";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function AppWrapper() {
   const location = useLocation();
+  const [theme, setTheme] = useState("light");
 
-  // Show navbar/footer on these pages
+  // Enable theme from localStorage or default to light
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") || "light";
+    setTheme(storedTheme);
+    if (storedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  // Update HTML class and localStorage when theme changes
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark");
+  };
+
   const showNavbarRoutes = [
     "/",
     "/login",
@@ -46,7 +65,7 @@ function AppWrapper() {
 
   return (
     <>
-      {showNavbar && <Navbar />}
+      {showNavbar && <Navbar toggleTheme={toggleTheme} currentTheme={theme} />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -61,7 +80,7 @@ function AppWrapper() {
         <Route path="/resume-info" element={<ResumeInfo />} />
         <Route path="/mock-interview-info" element={<MockInterviewInfo />} />
         <Route path="/summary" element={<SummaryPage />} />
-        <Route path="/profile" element={<EditProfile />} /> {/* ✅ New route */}
+        <Route path="/profile" element={<EditProfile />} />
       </Routes>
       {showNavbar && <Footer />}
     </>

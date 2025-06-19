@@ -39,10 +39,12 @@ function Navbar() {
 
           {/* Dropdown */}
           <div className="relative">
-            <button
-              onClick={handleDropdownClick}
-              className="flex items-center gap-1 hover:text-yellow-400 transition focus:outline-none"
-            >
+           <button
+  onClick={handleDropdownClick}
+  className="flex items-center gap-1 hover:text-yellow-400 transition focus:outline-none"
+  aria-haspopup="true"
+  aria-expanded={isDropdownOpen}
+>
               Services
               <svg
                 className={`w-4 h-4 transition-transform duration-200 ${
@@ -124,7 +126,7 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#020617] px-6 pb-4 pt-2 space-y-2 font-medium text-white">
+<div className="md:hidden bg-[#020617] px-6 pb-4 pt-2 space-y-2 font-medium text-white transition-all duration-300 ease-in-out">
           <Link to="/" className="block hover:text-yellow-400">
             Home
           </Link>
