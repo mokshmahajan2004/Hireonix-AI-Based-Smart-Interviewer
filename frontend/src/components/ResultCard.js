@@ -1,18 +1,35 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 const ResultCard = ({ title, icon, content }) => {
+  // If content is an array, convert it to markdown bullet points
+  const markdownContent = Array.isArray(content)
+    ? content.map((item) => `- ${item}`).join("\n")
+    : content;
+
   return (
-    <div className="bg-[#0f172a] border border-gray-700 rounded-xl p-6 mb-6 shadow-lg overflow-x-auto">
-      <h3 className="text-xl font-bold text-yellow-400 mb-4">
-        {icon} {title}
-      </h3>
+    <div className="mb-8 p-6 rounded-xl border border-gray-700 bg-[#0f172a] shadow-lg">
+      <h2 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+        <span>{icon}</span> {title}
+      </h2>
+
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        className="prose prose-sm sm:prose md:prose-lg text-white max-w-none"
+        components={{
+          p: ({ node, ...props }) => (
+            <p {...props} className="text-sm text-gray-300 leading-relaxed" />
+          ),
+          li: ({ node, ...props }) => (
+            <li {...props} className="ml-5 list-disc text-sm text-gray-300" />
+          ),
+          strong: ({ node, ...props }) => (
+            <strong {...props} className="text-white font-semibold" />
+          ),
+          em: ({ node, ...props }) => (
+            <em {...props} className="text-cyan-400 italic" />
+          ),
+        }}
       >
-        {content}
+        {markdownContent}
       </ReactMarkdown>
     </div>
   );
