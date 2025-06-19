@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/animations/yellow.json"; // ✅ Update if your path is different
+import Sidebar from "../../components/Sidebar"; 
 
 const PreInterviewForm = () => {
   const navigate = useNavigate();
@@ -108,8 +109,10 @@ const handleSubmit = (e) => {
   }
 
   return (
-<div className="min-h-screen bg-[#020617] px-6 py-16 flex items-center justify-center text-white font-sans">
-  <div className="w-full max-w-4xl bg-[#020617] rounded-3xl border border-gray-700 shadow-2xl p-10">
+<div className="min-h-screen flex bg-[#020617] text-white font-sans group">
+  <Sidebar />
+<main className="w-full sm:ml-16 sm:group-hover:ml-56 transition-all duration-300 px-4 sm:px-6 py-16 flex justify-center">
+  <div className="w-full max-w-2xl sm:max-w-3xl bg-[#020617] rounded-3xl border border-gray-700 shadow-2xl p-10">
     <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-2">
           📝 Pre-Interview Details
         </h2>
@@ -402,8 +405,8 @@ className="bg-transparent flex-1 text-sm p-1 outline-none text-white placeholder
           </button>
         </form>
       </div>
-    </div>
-  );
+  </main>
+</div>  );
 };
 
 export default PreInterviewForm;
