@@ -11,6 +11,9 @@ from services.report_generator import generate_report
 from pydantic import BaseModel
 import tempfile
 import os
+from services.ats import evaluate_resume, extract_skills
+from utils.resume_reader import read_resume_file
+from fastapi import Form
 
 router = APIRouter()
 
@@ -62,3 +65,21 @@ def generate_report_endpoint(
 ):
     path = generate_report(name, email, role, skills, experience, achievements, notes, qa_feedback)
     return {"message": "Report generated", "path": path}
+
+
+@router.post("/ats-evaluate/")
+async def ats_evaluate_endpoint(
+    job_description: str = Form(...),
+    resume_file: UploadFile = File(...)
+):
+    # Read uploaded file
+    content = await resume_file.read()
+    resume_text = read_resume_file(resume_file.filename, content)
+
+    # Get AI evaluation
+    evaluation_result = evaluate_resume(job_description, resume_text)
+
+    return {
+        "evaluation": evaluation_result
+    }
+

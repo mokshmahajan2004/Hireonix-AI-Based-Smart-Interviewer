@@ -9,3 +9,6 @@ scipy
 python-multipart
 pydantic
 python-dotenv
+python-multipart
+PyMuPDF
+httpx
