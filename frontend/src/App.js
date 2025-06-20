@@ -20,6 +20,7 @@ import ResumeInfo from "./pages/landing-page-navbar/services/ResumeInfo";
 import MockInterviewInfo from "./pages/landing-page-navbar/services/MockInterviewInfo";
 import SummaryPage from './pages/interview-practice/SummaryPage';
 import EditProfile from "./pages/EditProfile";
+import HelpPage from "./pages/HelpPage";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -81,6 +82,7 @@ function AppWrapper() {
         <Route path="/mock-interview-info" element={<MockInterviewInfo />} />
         <Route path="/summary" element={<SummaryPage />} />
         <Route path="/profile" element={<EditProfile />} />
+        <Route path="/help" element={<HelpPage />} />
       </Routes>
       {showNavbar && <Footer />}
     </>

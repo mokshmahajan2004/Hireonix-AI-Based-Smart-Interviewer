@@ -1,40 +1,96 @@
 import React from "react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0f172a] text-white py-12 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-lg font-bold mb-2">Hireonix</h3>
-          <p className="text-sm text-gray-400">
-            Your AI-powered companion for mock interviews, resume evaluation, and skill tracking.
-          </p>
-        </div>
-        <div>
-          <h4 className="text-md font-semibold mb-2">Quick Links</h4>
-          <ul className="space-y-1 text-sm text-gray-300">
-            <li><a href="#hero" className="hover:text-yellow-400">Home</a></li>
-            <li><a href="/about" className="hover:text-yellow-400">About</a></li>
-            <li><a href="/services" className="hover:text-yellow-400">Services</a></li>
-            <li><a href="/login" className="hover:text-yellow-400">Login</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-md font-semibold mb-2">Contact</h4>
-          <p className="text-sm text-gray-300">Email: support@hireonix.com</p>
-          <p className="text-sm text-gray-300">Phone: +91 98765 43210</p>
-        </div>
-        <div>
-          <h4 className="text-md font-semibold mb-2">Follow Us</h4>
-          <div className="flex space-x-4 text-sm text-gray-300">
-            <a href="#" className="hover:text-yellow-400">LinkedIn</a>
-            <a href="#" className="hover:text-yellow-400">Twitter</a>
-            <a href="#" className="hover:text-yellow-400">Instagram</a>
-          </div>
-        </div>
+    <footer className="relative bg-[#0f172a] text-white pt-32 pb-36 overflow-hidden">
+
+     {/* --- Top Wave Shape --- */}
+<div className="absolute top-0 left-0 w-full z-0">
+  <svg
+    className="w-full h-[120px]"
+    viewBox="0 0 1440 320"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+  >
+    <path
+      fill="#0f172a"
+      d="M0,256L60,234.7C120,213,240,171,360,144C480,117,600,107,720,133.3C840,160,960,224,1080,240C1200,256,1320,224,1380,208L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+    />
+  </svg>
+</div>
+
+      {/* --- Bottom Arc SVG --- */}
+      <div className="absolute bottom-0 left-0 w-full z-0 animate-fade">
+        <svg
+          viewBox="0 0 1440 120"
+          className="w-full h-[100px] rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,96 C480,0 960,0 1440,96 L1440,0 L0,0 Z"
+            fill="#0f172a"
+          />
+        </svg>
       </div>
-      <div className="text-center text-sm text-gray-500 mt-10">
-        © {new Date().getFullYear()} Hireonix. All rights reserved.
+
+      {/* --- Background Watermark Brand --- */}
+      <h1 className="absolute bottom-6 left-6 text-[120px] md:text-[160px] font-extrabold text-white/5 select-none pointer-events-none z-0 leading-none animate-fade">
+        Hireonix
+      </h1>
+
+      {/* --- Footer Content --- */}
+      <div className="max-w-5xl mx-auto text-center px-6 z-10 relative">
+        <h2 className="text-4xl font-extrabold text-yellow-400 mb-2 tracking-tight">
+          Hireonix
+        </h2>
+
+        <p className="text-xl font-medium text-white mb-3">
+          Upgrade Your Interview & Resume Experience
+        </p>
+
+        <p className="text-gray-400 text-sm max-w-2xl mx-auto mb-6 leading-relaxed">
+          Join our AI-powered platform for mock interviews, resume screening, and actionable insights.
+          Be among the first to access exclusive tools and features tailored to you.
+        </p>
+
+        <button className="bg-yellow-400 text-black font-bold px-8 py-3 rounded-full shadow-md hover:bg-yellow-300 transition duration-300">
+          Get Early Access
+        </button>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-5 mt-8 text-gray-400">
+          <a href="#" aria-label="LinkedIn">
+            <Linkedin className="w-6 h-6 hover:text-yellow-400 transition" />
+          </a>
+          <a href="#" aria-label="Twitter">
+            <Twitter className="w-6 h-6 hover:text-yellow-400 transition" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <Instagram className="w-6 h-6 hover:text-yellow-400 transition" />
+          </a>
+          <a href="#" aria-label="Facebook">
+            <Facebook className="w-6 h-6 hover:text-yellow-400 transition" />
+          </a>
+        </div>
+
+        {/* Footer Links */}
+        <div className="mt-8 flex justify-center flex-wrap gap-8 text-sm text-gray-500 font-medium">
+          <a href="#" className="hover:text-yellow-400 transition">Privacy Policy</a>
+          <a href="#" className="hover:text-yellow-400 transition">Terms & Conditions</a>
+          <a href="/contact" className="hover:text-yellow-400 transition">Contact Us</a>
+        </div>
+
+        {/* Copyright */}
+        <p className="text-xs text-gray-600 mt-6">
+          © {new Date().getFullYear()} <span className="text-yellow-400 font-semibold">Hireonix</span>. All rights reserved.
+        </p>
       </div>
     </footer>
   );
