@@ -12,3 +12,5 @@ python-dotenv
 python-multipart
 PyMuPDF
 httpx
+firebase-admin
+google-cloud-storage
