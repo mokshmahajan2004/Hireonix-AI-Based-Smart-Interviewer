@@ -14,6 +14,7 @@ import os
 from services.ats import evaluate_resume, extract_skills
 from utils.resume_reader import read_resume_file
 from fastapi import Form
+from firebase import save_profile_to_firestore
 
 router = APIRouter()
 
@@ -83,3 +84,9 @@ async def ats_evaluate_endpoint(
         "evaluation": evaluation_result
     }
 
+
+@router.post("/save-profile/")
+def save_profile(profile: CandidateProfile):
+    profile_dict = profile.dict()
+    success = save_profile_to_firestore(profile_dict)
+    return {"success": success}
