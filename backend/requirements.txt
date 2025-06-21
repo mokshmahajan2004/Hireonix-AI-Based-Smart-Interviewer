@@ -14,3 +14,7 @@ PyMuPDF
 httpx
 firebase-admin
 google-cloud-storage
+
+markdown2
+weasyprint==60.2
+

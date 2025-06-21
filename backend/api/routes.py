@@ -15,6 +15,10 @@ from services.ats import evaluate_resume, extract_skills
 from utils.resume_reader import read_resume_file
 from fastapi import Form
 from firebase import save_profile_to_firestore
+from services.pdf_uploader import convert_md_to_pdf, upload_pdf_to_firebase
+from fastapi import UploadFile, File, Form
+from firebase import upload_profile_picture_and_save_url
+
 
 router = APIRouter()
 
@@ -67,6 +71,16 @@ def generate_report_endpoint(
     path = generate_report(name, email, role, skills, experience, achievements, notes, qa_feedback)
     return {"message": "Report generated", "path": path}
 
+@router.post("/upload-report")
+def upload_interview_report(name: str = Body(...)):
+    md_path = "interview_report.md"
+    pdf_path = f"{name.replace(' ', '_')}_Interview_Report.pdf"
+
+    convert_md_to_pdf(md_path, pdf_path)
+    public_url = upload_pdf_to_firebase(pdf_path)
+
+    return {"message": "Report uploaded", "url": public_url}
+
 
 @router.post("/ats-evaluate/")
 async def ats_evaluate_endpoint(
@@ -90,3 +104,18 @@ def save_profile(profile: CandidateProfile):
     profile_dict = profile.dict()
     success = save_profile_to_firestore(profile_dict)
     return {"success": success}
+
+
+@router.post("/upload-profile-pic")
+async def upload_profile_pic(email: str = Form(...), file: UploadFile = File(...)):
+    temp_file_path = f"temp_{file.filename}"
+    with open(temp_file_path, "wb") as f:
+        content = await file.read()
+        f.write(content)
+
+    image_url = upload_profile_picture_and_save_url(email, temp_file_path)
+
+    import os
+    os.remove(temp_file_path)
+
+    return {"message": "Profile picture uploaded successfully", "url": image_url}
