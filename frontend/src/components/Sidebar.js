@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../Config";
-import Avatar from "react-avatar";
 import {
   FiHome,
   FiLogOut,
@@ -60,15 +59,29 @@ const Sidebar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  // Generate initials from username
+  const getInitials = (name) =>
+    name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+
   return (
     <aside className="group fixed top-0 left-0 bottom-0 bg-gradient-to-b from-[#0f172a] via-[#1e253a] to-[#0f172a] border-r border-gray-800 w-16 sm:hover:w-56 z-50 flex flex-col justify-between shadow-xl transition-[width] duration-300 ease-in-out overflow-hidden">
       <div className="flex flex-col items-center group-hover:items-start space-y-6 px-3 pt-6 transition-all duration-300 ease-in-out">
         <div className="flex items-center w-full">
           <div className="flex-shrink-0">
             {photo ? (
-              <img src={photo} alt="Profile" className="w-10 h-10 rounded-full border-2 border-yellow-400 object-cover" />
+              <img
+                src={photo}
+                alt="Profile"
+                className="w-10 h-10 rounded-full border-2 border-yellow-400 object-cover"
+              />
             ) : (
-              <Avatar name={username} size="40" round textSizeRatio={2} color="#facc15" fgColor="#1e293b" className="shadow-sm" />
+              <div className="w-10 h-10 bg-yellow-400 text-[#1e293b] font-bold rounded-full flex items-center justify-center shadow-sm">
+                {getInitials(username)}
+              </div>
             )}
           </div>
           <div className="ml-3 overflow-hidden min-w-0">
@@ -84,7 +97,9 @@ const Sidebar = () => {
               key={item.path}
               onClick={() => navigate(item.path)}
               className={`flex items-center w-full px-2 py-2 rounded-md transition-all duration-300 ease-in-out ${
-                isActive(item.path) ? "bg-yellow-400 text-black font-semibold" : "text-white hover:bg-gray-700"
+                isActive(item.path)
+                  ? "bg-yellow-400 text-black font-semibold"
+                  : "text-white hover:bg-gray-700"
               } hover:scale-[1.02] hover:shadow-md`}
               title={item.label}
             >
