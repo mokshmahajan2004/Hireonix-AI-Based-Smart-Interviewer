@@ -2,7 +2,7 @@ import whisper
 import subprocess
 import os
 
-model = whisper.load_model("base")
+model = whisper.load_model("tiny")
 
 def transcribe_audio(file_path: str) -> str:
     wav_path = file_path.replace(".webm", ".wav")
