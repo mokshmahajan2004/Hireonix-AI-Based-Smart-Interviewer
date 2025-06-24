@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 openai
-#pyttsx3
+pyttsx3
 git+https://github.com/openai/whisper.git
 #sounddevice
 numpy
@@ -14,7 +14,6 @@ PyMuPDF
 httpx
 firebase-admin
 google-cloud-storage
-
 markdown2
 weasyprint==60.2
 
