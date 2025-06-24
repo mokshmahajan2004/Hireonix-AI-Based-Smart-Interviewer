@@ -2,18 +2,17 @@ fastapi
 uvicorn
 openai
 pyttsx3
-git+https://github.com/openai/whisper.git
-#sounddevice
+# git+https://github.com/openai/whisper.git
 numpy
 scipy
 python-multipart
 pydantic
 python-dotenv
-python-multipart
 PyMuPDF
 httpx
 firebase-admin
 google-cloud-storage
 markdown2
 weasyprint==60.2
+openai-whisper-cpu
 
