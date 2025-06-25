@@ -2,6 +2,7 @@ fastapi
 uvicorn
 openai
 pyttsx3
+torch==2.1.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 git+https://github.com/openai/whisper.git
 numpy
 scipy
