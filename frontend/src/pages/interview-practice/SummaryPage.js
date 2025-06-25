@@ -1,5 +1,6 @@
 // src/pages/SummaryPage.js
 import React, { useEffect, useState } from "react";
+import Sidebar from "../../components/Sidebar"; // Make sure this import exists at the top
 import {
   PieChart,
   Pie,
@@ -141,13 +142,19 @@ const SummaryPage = () => {
     return "🔴 Needs Improvement";
   };
 
-  return (
-    <div className="min-h-screen bg-[#020617] text-white p-8 font-sans">
-      <div className="max-w-6xl mx-auto bg-[#0f172a] p-8 rounded-xl border border-gray-700 shadow-xl">
-        <h2 className="text-3xl font-bold text-blue-400 mb-6 text-center">
+return (
+  <div className="flex bg-[#020617] min-h-screen">
+    {/* Sidebar */}
+    <Sidebar />
+
+    {/* Main Content */}
+    <main className="w-full sm:ml-16 transition-all duration-300 px-4 sm:px-6 py-12 flex justify-center">
+      <div className="w-full max-w-[85rem] mx-auto bg-[#0f172a] p-6 sm:p-10 rounded-xl border border-gray-700 shadow-2xl text-white">
+        <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">
           📊 Interview Summary Report
         </h2>
 
+        {/* Stats Section */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-center">
           <div className="bg-slate-800 p-4 rounded-lg">
             <p className="text-lg font-bold">{responses.length}</p>
@@ -167,27 +174,27 @@ const SummaryPage = () => {
           </div>
         </div>
 
+        {/* Interview Time */}
         <div className="text-sm italic text-center text-gray-400 mb-6">
-          ⏱️ Total Interview Time: {interviewTime}
+          ⏱ Total Interview Time: {interviewTime}
         </div>
 
-        <div className="bg-[#0f172a] border border-gray-600 p-4 rounded-lg mb-8">
-          <h3 className="text-lg font-semibold mb-2">🧾 Candidate Details</h3>
-          <p>
-            <strong>Name:</strong> {userProfile.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {userProfile.email}
-          </p>
-          <p>
-            <strong>Role:</strong> {userProfile.role}
-          </p>
-          <p>
-            <strong>Skills:</strong> {userProfile.skills}
-          </p>
+        {/* Candidate Info */}
+        <div className="bg-[#0f172a] border border-gray-600 p-5 rounded-lg mb-10">
+          <h3 className="text-lg font-semibold mb-3 text-blue-300">
+            🧾 Candidate Details
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm sm:text-base text-gray-200">
+            <p><strong>Name:</strong> {userProfile.name}</p>
+            <p><strong>Email:</strong> {userProfile.email}</p>
+            <p><strong>Role:</strong> {userProfile.role}</p>
+            <p><strong>Skills:</strong> {userProfile.skills}</p>
+          </div>
         </div>
 
+        {/* Charts Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          {/* Pie Chart */}
           <div className="bg-[#0f172a] border border-gray-600 p-4 rounded-lg">
             <h3 className="text-lg font-semibold text-center mb-4">
               🧪 Answered vs Unanswered
@@ -213,6 +220,7 @@ const SummaryPage = () => {
             </ResponsiveContainer>
           </div>
 
+          {/* Bar Chart */}
           <div className="bg-[#0f172a] border border-gray-600 p-4 rounded-lg">
             <h3 className="text-lg font-semibold text-center mb-4">
               📈 Score per Question
@@ -230,6 +238,7 @@ const SummaryPage = () => {
           </div>
         </div>
 
+        {/* Q&A Feedback */}
         <div className="space-y-6 mb-10">
           {responses.map((item, idx) => (
             <div
@@ -243,44 +252,26 @@ const SummaryPage = () => {
               <h4 className="font-semibold text-blue-300 mb-2">
                 Q{idx + 1}: {item.question}
               </h4>
-              <p>
-                <strong>Status:</strong> {item.status.toUpperCase()}
-              </p>
-              <p>
-                <strong>Answer:</strong> {item.answer || "-"}
-              </p>
-              <p>
-                <strong>Score:</strong> {item.score ?? "Not Rated"}/10
-              </p>
-              <p>
-                <strong>Feedback:</strong> {item.feedback || "N/A"}
-              </p>
-              <p>
-                <strong>Improvement:</strong> {item.improvement || "N/A"}
-              </p>
+              <p><strong>Status:</strong> {item.status.toUpperCase()}</p>
+              <p><strong>Answer:</strong> {item.answer || "-"}</p>
+              <p><strong>Score:</strong> {item.score ?? "Not Rated"}/10</p>
+              <p><strong>Feedback:</strong> {item.feedback || "N/A"}</p>
+              <p><strong>Improvement:</strong> {item.improvement || "N/A"}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-[#0f172a] border border-purple-500 p-4 rounded-lg mb-8">
-          <h3 className="text-lg font-bold text-purple-300 mb-2">
-            🧠 Strengths & Weak Areas
-          </h3>
-          <p>
-            <strong>Detected Strengths:</strong>{" "}
-            {strengths.length ? strengths.join(", ") : "Not detected"}
-          </p>
-          <p>
-            <strong>Areas to Improve:</strong>{" "}
-            {weakAreas.length ? weakAreas.join(", ") : "None"}
-          </p>
+        {/* Strengths & Weaknesses */}
+        <div className="bg-[#0f172a] border border-purple-500 p-5 rounded-lg mb-10">
+          <h3 className="text-lg font-bold text-purple-300 mb-2">🧠 Strengths & Weak Areas</h3>
+          <p><strong>Detected Strengths:</strong> {strengths.length ? strengths.join(", ") : "Not detected"}</p>
+          <p><strong>Areas to Improve:</strong> {weakAreas.length ? weakAreas.join(", ") : "None"}</p>
         </div>
 
-        <div className="bg-[#0f172a] border border-yellow-400 p-4 rounded-lg">
-          <h3 className="text-lg font-bold text-yellow-400 mb-2">
-            📌 AI Recommendations
-          </h3>
-          <ul className="list-disc pl-6 text-gray-300 text-sm space-y-1">
+        {/* AI Recommendations */}
+        <div className="bg-[#0f172a] border border-yellow-400 p-5 rounded-lg mb-6">
+          <h3 className="text-lg font-bold text-yellow-400 mb-2">📌 AI Recommendations</h3>
+          <ul className="list-disc pl-6 text-gray-300 space-y-1 text-sm sm:text-base">
             {recommendations.map((r, i) => (
               <li key={i}>{r}</li>
             ))}
@@ -291,8 +282,10 @@ const SummaryPage = () => {
           💬 This report was generated based on your mock interview session.
         </p>
       </div>
-    </div>
-  );
+    </main>
+  </div>
+);
+
 };
 
 export default SummaryPage;

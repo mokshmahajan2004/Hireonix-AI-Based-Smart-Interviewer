@@ -109,10 +109,10 @@ const handleSubmit = (e) => {
   }
 
   return (
-<div className="min-h-screen flex bg-[#020617] text-white font-sans group">
+  <div className="min-h-screen flex bg-[#020617] text-white font-sans group">
   <Sidebar />
-<main className="w-full sm:ml-16 sm:group-hover:ml-56 transition-all duration-300 px-4 sm:px-6 py-16 flex justify-center">
-  <div className="w-full max-w-2xl sm:max-w-3xl bg-[#020617] rounded-3xl border border-gray-700 shadow-2xl p-10">
+    <main className="w-full sm:ml-16 transition-all duration-300 px-4 sm:px-6 py-16 flex justify-center">
+      <div className="w-full max-w-[70rem] mx-auto bg-[#0f172a] rounded-3xl border border-gray-700 shadow-2xl p-6 sm:p-10">
     <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-2">
           📝 Pre-Interview Details
         </h2>

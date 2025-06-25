@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,10 +12,9 @@ const StartInterview = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [responses, setResponses] = useState([]);
   const [timer, setTimer] = useState(60);
-  const [transcribedText, setTranscribedText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
 
-  const audioBlobRef = useRef(null); // to store blob when available
+  const audioBlobRef = useRef(null);
 
   useEffect(() => {
     const storedQuestions =
@@ -23,6 +22,40 @@ const StartInterview = () => {
     setQuestions(storedQuestions);
     console.log("✅ Loaded questions:", storedQuestions);
   }, []);
+
+  const goToNextQuestion = useCallback(
+    (updatedResponses) => {
+      if (currentIndex < questions.length - 1) {
+        setResponses(updatedResponses);
+        setCurrentIndex(currentIndex + 1);
+        setTimer(60);
+        console.log("➡️ Moving to question:", currentIndex + 2);
+      } else {
+        localStorage.setItem(
+          "interviewResponses",
+          JSON.stringify(updatedResponses)
+        );
+        console.log("✅ Interview complete. Redirecting to summary.");
+        navigate("/summary");
+      }
+    },
+    [currentIndex, navigate, questions.length]
+  );
+
+  const handleSkip = useCallback(() => {
+    console.log("⏭️ Skipped question:", questions[currentIndex]);
+    const updatedResponses = [
+      ...responses,
+      {
+        question: questions[currentIndex],
+        status: "unanswered",
+        answer: "",
+        feedback: "",
+        score: null,
+      },
+    ];
+    goToNextQuestion(updatedResponses);
+  }, [currentIndex, questions, responses, goToNextQuestion]);
 
   useEffect(() => {
     if (questions.length === 0) return;
@@ -39,7 +72,7 @@ const StartInterview = () => {
     }, 1000);
 
     return () => clearInterval(countdown);
-  }, [currentIndex, questions]);
+  }, [currentIndex, questions, handleSkip]);
 
   const handleRecordingStop = async (blob) => {
     console.log("🎙️ Recording stopped. Sending blob to backend...");
@@ -49,7 +82,6 @@ const StartInterview = () => {
     formData.append("file", blob, "recording.webm");
 
     try {
-      console.log("📤 Sending to /transcribe-audio...");
       const transcriptRes = await axios.post(
         "http://localhost:8000/transcribe-audio",
         formData,
@@ -60,9 +92,7 @@ const StartInterview = () => {
 
       const transcription = transcriptRes.data.transcription;
       console.log("✅ Transcription received:", transcription);
-      setTranscribedText(transcription);
 
-      console.log("📤 Sending to /evaluate...");
       const evalRes = await axios.post("http://localhost:8000/evaluate/", {
         question: questions[currentIndex],
         answer: transcription,
@@ -92,38 +122,6 @@ const StartInterview = () => {
   const extractScore = (feedback) => {
     const match = feedback.match(/Score: (\d+)/i);
     return match ? parseInt(match[1]) : null;
-  };
-
-  const handleSkip = () => {
-    console.log("⏭️ Skipped question:", questions[currentIndex]);
-    const updatedResponses = [
-      ...responses,
-      {
-        question: questions[currentIndex],
-        status: "unanswered",
-        answer: "",
-        feedback: "",
-        score: null,
-      },
-    ];
-    goToNextQuestion(updatedResponses);
-  };
-
-  const goToNextQuestion = (updatedResponses) => {
-    if (currentIndex < questions.length - 1) {
-      setResponses(updatedResponses);
-      setCurrentIndex(currentIndex + 1);
-      setTimer(60);
-      setTranscribedText("");
-      console.log("➡️ Moving to question:", currentIndex + 2);
-    } else {
-      localStorage.setItem(
-        "interviewResponses",
-        JSON.stringify(updatedResponses)
-      );
-      console.log("✅ Interview complete. Redirecting to summary.");
-      navigate("/summary");
-    }
   };
 
   const playQuestionTTS = async () => {
@@ -156,7 +154,7 @@ const StartInterview = () => {
       blobPropertyBag={{ type: "audio/webm" }}
       onStop={(blobUrl, blob) => {
         audioBlobRef.current = blob;
-        handleRecordingStop(blob); // ✅ only when blob is ready
+        handleRecordingStop(blob);
       }}
       render={({ startRecording, stopRecording }) => (
         <div className="min-h-screen bg-[#020617] px-4 py-12 md:px-10 text-white">
@@ -172,84 +170,81 @@ const StartInterview = () => {
               . Speak confidently within the 60-second timer.
             </p>
 
-<div className="grid md:grid-cols-2 gap-8 items-start">
-  {/* Webcam Section */}
-  <div className="bg-black border border-gray-700 rounded-2xl overflow-hidden shadow-lg h-[400px] w-full">
-    <Webcam
-      audio={false}
-      screenshotFormat="image/jpeg"
-      videoConstraints={{
-        width: 400,
-        height: 300,
-        facingMode: "user",
-      }}
-      className="rounded-2xl w-full h-full object-cover"
-    />
-  </div>
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              {/* Webcam */}
+              <div className="bg-black border border-gray-700 rounded-2xl overflow-hidden shadow-lg h-[400px] w-full">
+                <Webcam
+                  audio={false}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={{
+                    width: 400,
+                    height: 300,
+                    facingMode: "user",
+                  }}
+                  className="rounded-2xl w-full h-full object-cover"
+                />
+              </div>
 
-  {/* Question Box Section */}
-  <div className="bg-[#0f172a] border border-blue-800 rounded-2xl p-6 md:p-8 shadow-lg h-[400px] flex flex-col justify-between w-full">
-    <div>
-      <p className="text-sm text-gray-400 mb-1">
-        Question {currentIndex + 1} of {questions.length}
-      </p>
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl md:text-2xl font-bold text-blue-300">
-          {questions[currentIndex]}
-        </h3>
-        <button
-          onClick={playQuestionTTS}
-          className="text-lg bg-purple-600 px-3 py-1 rounded hover:bg-purple-700"
-        >
-          🔊
-        </button>
-      </div>
+              {/* Question Box */}
+              <div className="bg-[#0f172a] border border-blue-800 rounded-2xl p-6 md:p-8 shadow-lg h-[400px] flex flex-col justify-between w-full">
+                <div>
+                  <p className="text-sm text-gray-400 mb-1">
+                    Question {currentIndex + 1} of {questions.length}
+                  </p>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">
+                      {questions[currentIndex]}
+                    </h3>
+                    <button
+                      onClick={playQuestionTTS}
+                      className="text-lg bg-purple-600 px-3 py-1 rounded hover:bg-purple-700"
+                    >
+                      🔊
+                    </button>
+                  </div>
 
-      <div className="relative w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
-        <div
-          className="absolute top-0 left-0 h-full bg-yellow-400 transition-all duration-1000 ease-linear"
-          style={{ width: `${(timer / 60) * 100}%` }}
-        ></div>
-      </div>
-      <div className="text-sm text-yellow-300 text-right mb-4">
-        ⏱️ {timer}s remaining
-      </div>
-    </div>
+                  <div className="relative w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
+                    <div
+                      className="absolute top-0 left-0 h-full bg-yellow-400 transition-all duration-1000 ease-linear"
+                      style={{ width: `${(timer / 60) * 100}%` }}
+                    ></div>
+                  </div>
+                  <div className="text-sm text-yellow-300 text-right mb-4">
+                    ⏱️ {timer}s remaining
+                  </div>
+                </div>
 
-    {/* Buttons */}
-    <div className="flex flex-wrap gap-3 justify-center mt-4 mb-2">
-      <button
-        onClick={() => {
-          if (!isRecording) {
-            startRecording();
-            setIsRecording(true);
-            console.log("🎬 Recording started...");
-          } else {
-            stopRecording();
-            setIsRecording(false);
-            console.log("⏹ Stopping recording...");
-          }
-        }}
-        className={`${
-          isRecording
-            ? "bg-red-500 hover:bg-red-600"
-            : "bg-blue-500 hover:bg-blue-600"
-        } px-5 py-2 rounded-full text-white font-semibold`}
-      >
-        {isRecording ? "⏹ Stop & Transcribe" : "🎙 Start Recording"}
-      </button>
+                <div className="flex flex-wrap gap-3 justify-center mt-4 mb-2">
+                  <button
+                    onClick={() => {
+                      if (!isRecording) {
+                        startRecording();
+                        setIsRecording(true);
+                        console.log("🎬 Recording started...");
+                      } else {
+                        stopRecording();
+                        setIsRecording(false);
+                        console.log("⏹ Stopping recording...");
+                      }
+                    }}
+                    className={`${
+                      isRecording
+                        ? "bg-red-500 hover:bg-red-600"
+                        : "bg-blue-500 hover:bg-blue-600"
+                    } px-5 py-2 rounded-full text-white font-semibold`}
+                  >
+                    {isRecording ? "⏹ Stop & Transcribe" : "🎙 Start Recording"}
+                  </button>
 
-      <button
-        onClick={handleSkip}
-        className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
-      >
-        Skip ❌
-      </button>
-    </div>
-  </div>
-</div>
-
-
+                  <button
+                    onClick={handleSkip}
+                    className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
+                  >
+                    Skip ❌
+                  </button>
+                </div>
+              </div>
+            </div>
 
             <div className="mt-10 text-center text-sm text-gray-400 italic">
               💡 Tip: Answer naturally. Maintain eye contact, and speak clearly
