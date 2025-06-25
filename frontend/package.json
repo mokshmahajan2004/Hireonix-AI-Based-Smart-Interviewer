@@ -39,12 +39,14 @@
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "lint": "eslint . --ext .js,.jsx",
+  "lint:fix": "eslint . --ext .js,.jsx --fix"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
