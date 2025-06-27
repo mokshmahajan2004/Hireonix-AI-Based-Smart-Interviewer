@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import ResultCard from "../components/ResultCard";
 import sampleJobRolesData from "../data/sampleJobRolesData"; // dynamic job data
 import BulletRewriter from "../components/BulletRewritter";
+import Loader from "../components/Loader";
 
 const ResumeScreening = () => {
   const [step, setStep] = useState(1);
@@ -18,6 +19,7 @@ const ResumeScreening = () => {
   const [rewrites, setRewrites] = useState([]);
 
   const uploadSectionRef = useRef(null); // ✅ scroll target ref
+  
 
   const [llmSections, setLlmSections] = useState({
     matchScore: "",
@@ -44,45 +46,53 @@ const ResumeScreening = () => {
     return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, topN).map(([word]) => word);
   };
 
-  const compareSkills = () => {
-    const keywords = extractKeywords(jobDesc);
-    const resumeWords = resumeText.toLowerCase();
-    const matched = [];
-    const missing = [];
+  const compareSkills = async () => {
+  if (!resume || !jobDesc) {
+    alert("Please upload resume and enter job description.");
+    return;
+  }
 
-    keywords.forEach((word) => {
-      if (resumeWords.includes(word)) matched.push(word);
-      else missing.push(word);
+  const formData = new FormData();
+  formData.append("resume_file", resume);
+  formData.append("job_description", jobDesc);
+
+  try {
+    setLoading(true);
+    const response = await fetch("http://127.0.0.1:8000/ats-evaluate/", {
+      method: "POST",
+      body: formData,
     });
 
-    setMatchedKeywords(matched);
-    setMissingKeywords(missing);
+    const data = await response.json();
+    const raw = data.evaluation;
+
+    const extractSection = (start, end) => {
+      const pattern = new RegExp(`${start}[\\s\\S]*?${end}`, "g");
+      const match = raw.match(pattern);
+      return match ? match[0].replace(start, "").replace(end, "").trim() : "";
+    };
+
+    const matchScore = extractSection("🎯 Match Score", "❌ Missing or Weak Skills");
+    const missing = extractSection("❌ Missing or Weak Skills", "🧠 How to Improve").split("\n").map(s => s.trim()).filter(Boolean);
+    const improve = extractSection("🧠 How to Improve", "📝 Summary").split("\n").map(s => s.trim()).filter(Boolean);
+    const summary = raw.split("📝 Summary")[1]?.trim() || "";
 
     setLlmSections({
-      matchScore: "88/100 - Strong technical match, but lacks some preferred skills.",
-      missingSkills: ["Git", "Figma", "RESTful APIs"],
-      improvementTips: [
-        "Add version control tools like Git.",
-        "Mention exposure to RESTful APIs.",
-        "Include familiarity with design tools like Figma or Adobe XD.",
-      ],
-      summary:
-        "Your resume is technically strong and well-aligned for frontend roles. To further improve, focus on adding missing skills and quantifiable achievements.",
+      matchScore,
+      missingSkills: missing,
+      improvementTips: improve,
+      summary,
+      bulletRewrites: []
     });
 
-    setRewrites([
-      {
-        original: "Used Flask APIs and React UI to achieve 92% accuracy in CNN-based landmark identification.",
-        improved: "**Improved:** Leveraged Flask APIs and React UI to drive a 92% accuracy rate in CNN-based landmark identification.",
-        showImproved: false,
-      },
-      {
-        original: "Collaborated with cross-functional teams to ensure timely and high-quality project delivery.",
-        improved: "**Improved:** Partnered with cross-functional teams to deliver high-impact solutions on time with exceptional quality.",
-        showImproved: false,
-      },
-    ]);
-  };
+    setStep(3);
+  } catch (err) {
+    console.error("❌ Error parsing evaluation:", err);
+    alert("Something went wrong. Please check the backend response.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const StepIndicator = () => {
     const steps = [
@@ -99,16 +109,28 @@ const ResumeScreening = () => {
             onClick={() => stepItem.number < step && setStep(stepItem.number)}
           >
             <div className="flex flex-col items-center">
-              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-lg font-bold z-10 transition-all duration-300 ${step === stepItem.number ? "bg-yellow-400 text-black shadow-xl ring-4 ring-yellow-300" : step > stepItem.number ? "bg-green-500 text-white" : "border-2 border-gray-500 text-white bg-[#1e293b]"}`}>
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-lg font-bold z-10 transition-all duration-300 ${
+                step === stepItem.number
+                  ? "bg-yellow-400 text-black shadow-xl ring-4 ring-yellow-300"
+                  : step > stepItem.number
+                  ? "bg-green-500 text-white"
+                  : "border-2 border-gray-500 text-white bg-[#1e293b]"
+              }`}>
                 {step > stepItem.number ? <Check size={18} /> : stepItem.icon}
               </div>
-              <p className={`mt-2 text-xs md:text-sm text-center font-medium w-24 md:w-32 transition-colors duration-200 ${step === stepItem.number ? "text-white" : "text-gray-400 group-hover:text-yellow-300"}`}>
+              <p className={`mt-2 text-xs md:text-sm text-center font-medium w-24 md:w-32 transition-colors duration-200 ${
+                step === stepItem.number ? "text-white" : "text-gray-400 group-hover:text-yellow-300"
+              }`}>
                 {stepItem.label}
               </p>
             </div>
             {index < steps.length - 1 && (
               <div className="hidden sm:block w-10 md:w-16 h-1 bg-gray-600 mx-2 mt-1 relative">
-                <div className={`absolute top-0 left-0 h-full transition-all duration-300 ${step > stepItem.number ? "bg-yellow-400 w-full" : "bg-gray-600 w-0"}`}></div>
+                <div
+                  className={`absolute top-0 left-0 h-full transition-all duration-300 ${
+                    step > stepItem.number ? "bg-yellow-400 w-full" : "bg-gray-600 w-0"
+                  }`}
+                ></div>
               </div>
             )}
           </div>
@@ -238,53 +260,45 @@ const ResumeScreening = () => {
               </motion.div>
             )}
 
-            {step === 3 && (
-  <motion.div
-    key="step3"
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -30 }}
-    transition={{ duration: 0.5 }}
-    className="max-w-5xl mx-auto px-4 sm:px-6 space-y-6" // uniform spacing
-  >
-    <ResultCard
-      title="Match Score"
-      icon="🎯"
-      content={llmSections.matchScore}
-    />
-    <ResultCard
-      title="Critical Missing Skills"
-      icon="❌"
-      content={llmSections.missingSkills}
-    />
-    <ResultCard
-      title="How the Candidate Can Improve"
-      icon="🧠"
-      content={llmSections.improvementTips}
-    />
-    <ResultCard
-      title="Additional Feedback"
-      icon="💡"
-      content={llmSections.summary}
-    />
+{step === 3 && (
+  loading ? (
+    <motion.div
+      key="loader"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-5xl mx-auto px-4 sm:px-6"
+    >
+      <Loader />
+    </motion.div>
+  ) : (
+    <motion.div
+      key="step3"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-5xl mx-auto px-4 sm:px-6 space-y-6"
+    >
+      <ResultCard title="Match Score" icon="🎯" content={llmSections.matchScore} />
+      <ResultCard title="Critical Missing Skills" icon="❌" content={llmSections.missingSkills} />
+      <ResultCard title="How the Candidate Can Improve" icon="🧠" content={llmSections.improvementTips} />
+      <ResultCard title="Additional Feedback" icon="💡" content={llmSections.summary} />
 
-    {/* Ensure margin and layout consistency */}
-    {rewrites.length > 0 && (
-      <div className="bg-[#0f172a] border border-yellow-500 rounded-xl px-6 py-6 text-white space-y-4">
-        <h2 className="text-xl font-bold text-yellow-400 flex items-center gap-2">
-          📝 AI Bullet Rewriter
-        </h2>
-        <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
-      </div>
-    )}
-  </motion.div>
+      {rewrites.length > 0 && (
+        <div className="bg-[#0f172a] border border-yellow-500 rounded-xl px-6 py-6 text-white space-y-4">
+          <h2 className="text-xl font-bold text-yellow-400 flex items-center gap-2">📝 AI Bullet Rewriter</h2>
+          <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
+        </div>
+      )}
+    </motion.div>
+  )
 )}
-
           </AnimatePresence>
         </div>
       </main>
     </div>
   );
 };
-
 export default ResumeScreening;
