@@ -137,19 +137,28 @@ async def upload_profile_image(file: UploadFile = File(...)):
 @router.get("/past-interviews/{email}")
 def get_past_reports(email: str):
     db = firestore.client()
-    docs = db.collection("interview_reports")\
+    docs = db.collection_group("interview_reports")\
              .where("email", "==", email)\
              .order_by("timestamp", direction=firestore.Query.DESCENDING)\
              .stream()
 
+    seen = set()
     results = []
+
     for doc in docs:
         data = doc.to_dict()
-        results.append({
-            "file_name": data.get("file_name"),
-            "url": data.get("url"),
-            "role": data.get("role"),
-            "timestamp": data.get("timestamp")
-        })
+        file_name = data.get("file_name")
+
+        if file_name and file_name not in seen:
+            seen.add(file_name)
+            ts = data.get("timestamp")
+            ts_str = ts.isoformat() if ts and hasattr(ts, "isoformat") else None
+            results.append({
+                "file_name": file_name,
+                "url": data.get("url"),
+                "role": data.get("role"),
+                "timestamp": ts_str
+            })
 
     return results
+
