@@ -59,7 +59,6 @@ const Sidebar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Generate initials from username
   const getInitials = (name) =>
     name
       .split(" ")
@@ -68,7 +67,7 @@ const Sidebar = () => {
       .toUpperCase();
 
   return (
-    <aside className="group fixed top-0 left-0 bottom-0 bg-gradient-to-b from-[#0f172a] via-[#1e253a] to-[#0f172a] border-r border-gray-800 w-16 sm:hover:w-56 z-50 flex flex-col justify-between shadow-xl transition-[width] duration-300 ease-in-out overflow-hidden">
+    <aside className="group fixed top-0 left-0 bottom-0 bg-gradient-to-b from-[#020617] via-[#1e253a] to-[#0f172a] border-r border-cyan-800 w-16 sm:hover:w-60 z-50 flex flex-col justify-between shadow-2xl transition-[width] duration-300 ease-in-out overflow-hidden">
       <div className="flex flex-col items-center group-hover:items-start space-y-6 px-3 pt-6 transition-all duration-300 ease-in-out">
         <div className="flex items-center w-full">
           <div className="flex-shrink-0">
@@ -79,7 +78,7 @@ const Sidebar = () => {
                 className="w-10 h-10 rounded-full border-2 border-yellow-400 object-cover"
               />
             ) : (
-              <div className="w-10 h-10 bg-yellow-400 text-[#1e293b] font-bold rounded-full flex items-center justify-center shadow-sm">
+              <div className="w-10 h-10 bg-yellow-400 text-[#1e293b] font-bold rounded-full flex items-center justify-center shadow-md">
                 {getInitials(username)}
               </div>
             )}
@@ -99,8 +98,8 @@ const Sidebar = () => {
               className={`flex items-center w-full px-2 py-2 rounded-md transition-all duration-300 ease-in-out ${
                 isActive(item.path)
                   ? "bg-yellow-400 text-black font-semibold"
-                  : "text-white hover:bg-gray-700"
-              } hover:scale-[1.02] hover:shadow-md`}
+                  : "text-white hover:bg-[#1e293b]"
+              } hover:scale-[1.03] hover:shadow-md`}
               title={item.label}
             >
               <div className="flex-shrink-0">{item.icon}</div>
@@ -113,10 +112,10 @@ const Sidebar = () => {
       </div>
 
       <div className="mb-4 px-3">
-        <hr className="border-t border-gray-700 my-3" />
+        <hr className="border-t border-cyan-700 my-3" />
         <button
           onClick={handleLogout}
-          className="flex items-center w-full px-2 py-2 rounded-md bg-yellow-400 hover:bg-yellow-500 text-black font-semibold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md"
+          className="flex items-center w-full px-2 py-2 rounded-md bg-yellow-400 hover:bg-yellow-500 text-black font-semibold transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md"
         >
           <div className="flex-shrink-0">
             <FiLogOut size={20} />

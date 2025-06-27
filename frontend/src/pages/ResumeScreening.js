@@ -150,83 +150,23 @@ const compareSkills = () => {
 
       <StepIndicator />
       <AnimatePresence mode="wait">
-        {step === 1 && (
-          <motion.div key="step1" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }} className="max-w-3xl mx-auto border-2 border-dashed border-cyan-500 rounded-xl bg-[#0f172a]">
-            <div className="bg-[#1e293b] text-sm font-semibold text-white px-6 py-3 border-b border-cyan-800 rounded-t-xl">UPLOAD YOUR RESUME</div>
-            <div className="flex flex-col items-center justify-center py-16 px-4">
-              {!loading ? (
-                <>
-                  <h2 className="text-xl md:text-2xl font-bold text-center mb-4">Upload your resume to get started</h2>
-                  <label className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-6 rounded-lg cursor-pointer transition mb-2">
-                    Upload your resume
-                    <input type="file" accept=".pdf,.doc,.docx" onChange={handleUpload} hidden />
-                  </label>
-                  {resume && <><p className="text-sm text-green-400 mt-1">Uploaded: {resume.name}</p><button className="mt-4 text-sm px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md" onClick={() => setStep(2)}>Continue →</button></>}
-                  <p className="text-sm text-gray-400">as .pdf or .docx file</p>
-                  <p className="text-sm text-cyan-400 mt-2 underline cursor-pointer hover:text-cyan-300">Or paste resume text</p>
-                </>
-              ) : (
-                <div className="text-center">
-                  <h3 className="text-xl font-bold mb-2">Analyzing...</h3>
-                  <p className="text-sm text-gray-400 mb-6">Analyzing your resume…</p>
-                  <div className="w-60 h-4 bg-gray-700 rounded-full overflow-hidden mx-auto">
-                    <div className="h-full w-full bg-yellow-400 animate-pulse"></div>
-                  </div>
+          {step === 3 && (
+            <motion.div key="step3" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }} className="max-w-6xl mx-auto px-4 sm:px-6 mt-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <ResultCard title="🎯 Match Score" content={llmSections.matchScore} />
+                <ResultCard title="❌ Critical Missing Skills" content={llmSections.missingSkills} />
+                <ResultCard title="🧠 How the Candidate Can Improve" content={llmSections.improvementTips} />
+                <ResultCard title="💡 Additional Feedback" content={llmSections.summary} />
+              </div>
+              {rewrites.length > 0 && (
+                <div className="mt-10 bg-[#0f172a] border border-yellow-400 rounded-xl p-6">
+                  <h2 className="text-xl font-semibold text-yellow-400 mb-4 text-center">✍ Resume Bullet Enhancements</h2>
+                  <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
                 </div>
               )}
-            </div>
-          </motion.div>
-        )}
-        {step === 2 && (
-          <motion.div key="step2" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }} className="max-w-5xl mx-auto border border-cyan-600 rounded-xl bg-[#0f172a]">
-            <div className="grid md:grid-cols-2">
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">Paste a Job Description</h3>
-                <textarea value={jobDesc} onChange={(e) => setJobDesc(e.target.value)} rows="10" className="w-full p-4 text-sm bg-[#1e293b] border border-cyan-700 text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400 font-mono" placeholder="Paste job description here..."></textarea>
-                <p className="text-xs text-gray-500 mt-1 text-right">{jobDesc.trim().split(/\s+/).length} words</p>
-                <button onClick={() => { compareSkills(); setStep(3); }} className="mt-4 bg-yellow-400 text-black px-6 py-2 rounded-lg hover:bg-yellow-500 font-semibold">Scan Resume →</button>
-              </div>
-              <div className="p-6 border-t md:border-t-0 md:border-l border-cyan-800">
-                <h3 className="text-lg font-semibold text-white mb-4 text-center">Or Select a Sample Job Role</h3>
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-  {sampleJobRolesData.map((role) => (
-    <button
-      key={role.title}
-      onClick={() => setJobDesc(role.description)}
-      title={`Insert ${role.title} JD`}
-      className="bg-[#1e293b] border border-cyan-700 hover:border-yellow-400 hover:bg-[#111827] text-white text-sm py-3 px-4 rounded-lg shadow-sm transition duration-300 text-left hover:text-yellow-300"
-    >
-      {role.title}
-    </button>
-  ))}
-</div>
-
-              </div>
-            </div>
-          </motion.div>
-        )}
-{step === 3 && (
-  <motion.div
-    key="step3"
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -30 }}
-    transition={{ duration: 0.5 }}
-    className="max-w-5xl mx-auto px-4 sm:px-6"
-  >
-    <ResultCard title="Match Score" icon="🎯" content={llmSections.matchScore} />
-    <ResultCard title="Critical Missing Skills" icon="❌" content={llmSections.missingSkills} />
-    <ResultCard title="How the Candidate Can Improve" icon="🧠" content={llmSections.improvementTips} />
-    <ResultCard title="Additional Feedback" icon="💡" content={llmSections.summary} />
-
-    {/* ✅ Final Working Rewriter UI */}
-    {rewrites.length > 0 && (
-      <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
-    )}
-  </motion.div>
-)}
-
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
     </div>
         </main>
   </div>
