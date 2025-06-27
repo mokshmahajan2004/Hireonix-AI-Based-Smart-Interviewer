@@ -38,3 +38,14 @@ def upload_profile_picture_and_save_url(email: str, image_path: str):
     doc_ref.update({"profile_image_url": image_url})
 
     return image_url
+
+def save_report_metadata(report: dict):
+    db = firestore.client()
+    db.collection("interview_reports").add({
+        "name": report["name"],
+        "email": report["email"],
+        "role": report["role"],
+        "file_name": report["file_name"],
+        "url": report["url"],
+        "timestamp": report["timestamp"]
+    })

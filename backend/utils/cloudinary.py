@@ -1,7 +1,5 @@
 import cloudinary
 import cloudinary.uploader
-from cloudinary.utils import cloudinary_url
-
 import os
 from dotenv import load_dotenv
 
@@ -15,4 +13,16 @@ cloudinary.config(
     api_secret=os.getenv("CLOUDINARY_API_SECRET"),
     secure=True
 )
+def upload_markdown_to_cloudinary(file_path):
+    file_base = os.path.basename(file_path).split(".")[0]
+    result = cloudinary.uploader.upload(
+        file_path,
+        resource_type="raw",
+        folder="interview_reports",
+        public_id=file_base,  # ✅ name like "John_Doe_Frontend_2025-06-27_18-48-23"
+        use_filename=True,
+        unique_filename=False,
+        overwrite=False
+    )
+    return result['secure_url']
 

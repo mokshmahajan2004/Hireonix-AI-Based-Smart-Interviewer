@@ -7,12 +7,10 @@ scipy
 python-multipart
 pydantic
 python-dotenv
-PyMuPDF
 httpx
 firebase-admin
 google-cloud-storage
-markdown2
-weasyprint==60.2
 transformers
 torch
 ffmpeg-python
+cloudinary
