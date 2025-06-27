@@ -14,6 +14,7 @@ from utils.audio import transcribe_audio
 from utils.tts import generate_tts
 from utils.cloudinary import cloudinary
 from firebase import save_report_metadata 
+from utils.resume_reader import read_resume_file  
 
 # Schemas
 from api.schemas import CandidateProfile, QAInput
@@ -97,9 +98,11 @@ def generate_report_endpoint(
         "file_name": report["file_name"],
         "timestamp": report["timestamp"]
     }
-# ----------------------------------------
-# 6. ATS Resume Evaluation
-# ----------------------------------------
+import re  # ⬅️ at the top if not already imported
+
+def clean_output(text):
+    return re.sub(r"\*\*\d+", "", text)
+
 @router.post("/ats-evaluate/")
 async def ats_evaluate_endpoint(
     job_description: str = Form(...),
@@ -109,6 +112,9 @@ async def ats_evaluate_endpoint(
     resume_text = read_resume_file(resume_file.filename, content)
 
     evaluation_result = evaluate_resume(job_description, resume_text)
+
+    # ✅ Clean unwanted **2, **3 etc.
+    evaluation_result = clean_output(evaluation_result)
 
     return {
         "evaluation": evaluation_result
