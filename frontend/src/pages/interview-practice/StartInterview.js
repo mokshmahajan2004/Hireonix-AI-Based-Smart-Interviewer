@@ -27,7 +27,8 @@ const StartInterview = () => {
   }, []);
 
   useEffect(() => {
-    const storedQuestions = JSON.parse(localStorage.getItem("interviewQuestions")) || [];
+    const storedQuestions =
+      JSON.parse(localStorage.getItem("interviewQuestions")) || [];
     setQuestions(storedQuestions);
   }, []);
 
@@ -64,13 +65,19 @@ const StartInterview = () => {
     formData.append("file", blob, "recording.webm");
 
     try {
-      const transcriptRes = await axios.post("http://localhost:8000/transcribe-audio", formData);
+      const transcriptRes = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/transcribe-audio`,
+        formData
+      );
       const transcription = transcriptRes.data.transcription;
 
-      const evalRes = await axios.post("http://localhost:8000/evaluate/", {
-        question: questions[currentIndex],
-        answer: transcription,
-      });
+      const evalRes = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/evaluate/`,
+        {
+          question: questions[currentIndex],
+          answer: transcription,
+        }
+      );
 
       const feedback = evalRes.data.feedback;
       const updatedResponses = [
@@ -93,7 +100,10 @@ const StartInterview = () => {
       } else {
         // ✅ Interview end time saved here
         localStorage.setItem("interviewEnd", Date.now().toString());
-        localStorage.setItem("interviewResponses", JSON.stringify(updatedResponses));
+        localStorage.setItem(
+          "interviewResponses",
+          JSON.stringify(updatedResponses)
+        );
         navigate("/summary");
       }
     } catch (error) {
@@ -127,7 +137,10 @@ const StartInterview = () => {
     } else {
       // ✅ Interview end time saved here as well for skip case
       localStorage.setItem("interviewEnd", Date.now().toString());
-      localStorage.setItem("interviewResponses", JSON.stringify(updatedResponses));
+      localStorage.setItem(
+        "interviewResponses",
+        JSON.stringify(updatedResponses)
+      );
       navigate("/summary");
     }
   };
@@ -135,7 +148,7 @@ const StartInterview = () => {
   const playQuestionTTS = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/text-to-speech",
+        `${process.env.REACT_APP_BACKEND_URL}/text-to-speech`,
         { text: questions[currentIndex] },
         { responseType: "blob" }
       );
@@ -147,7 +160,9 @@ const StartInterview = () => {
   };
 
   if (questions.length === 0) {
-    return <div className="text-white text-center mt-20">Loading questions...</div>;
+    return (
+      <div className="text-white text-center mt-20">Loading questions...</div>
+    );
   }
 
   return (
@@ -170,7 +185,9 @@ const StartInterview = () => {
               </h2>
 
               <div className="text-center mb-2 text-sm text-cyan-400 uppercase">
-                {phase === "prep" ? "🟡 Preparation Phase" : "🔴 Answering Phase"}
+                {phase === "prep"
+                  ? "🟡 Preparation Phase"
+                  : "🔴 Answering Phase"}
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 items-start">
@@ -179,7 +196,11 @@ const StartInterview = () => {
                     audio={false}
                     screenshotFormat="image/jpeg"
                     className="w-full h-full object-cover"
-                    videoConstraints={{ width: 400, height: 300, facingMode: "user" }}
+                    videoConstraints={{
+                      width: 400,
+                      height: 300,
+                      facingMode: "user",
+                    }}
                   />
                 </div>
 
@@ -203,7 +224,11 @@ const StartInterview = () => {
                     <div className="relative w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
                       <div
                         className="absolute top-0 left-0 h-full bg-yellow-400"
-                        style={{ width: `${(timer / (phase === "prep" ? 30 : 90)) * 100}%` }}
+                        style={{
+                          width: `${
+                            (timer / (phase === "prep" ? 30 : 90)) * 100
+                          }%`,
+                        }}
                       ></div>
                     </div>
                     <div className="text-sm text-yellow-300 text-right">
@@ -212,52 +237,55 @@ const StartInterview = () => {
                   </div>
 
                   <div className="flex justify-center gap-4 mt-6">
-  {phase === "prep" && (
-    <button
-      onClick={() => {
-        setPhase("answer");
-        setTimer(90);
-        startRecordingRef.current?.();
-        setIsRecording(true);
-      }}
-      className="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-full text-white font-semibold"
-    >
-      ⏩ Skip Prep & Start Answering
-    </button>
-  )}
+                    {phase === "prep" && (
+                      <button
+                        onClick={() => {
+                          setPhase("answer");
+                          setTimer(90);
+                          startRecordingRef.current?.();
+                          setIsRecording(true);
+                        }}
+                        className="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-full text-white font-semibold"
+                      >
+                        ⏩ Skip Prep & Start Answering
+                      </button>
+                    )}
 
-  {phase === "answer" && (
-    <button
-      onClick={() => {
-        if (isRecording) {
-          stopRecordingRef.current?.();
-          setIsRecording(false);
-          setTimer(0);
-          setIsEvaluating(true);
-        }
-      }}
-      disabled={!isRecording || isEvaluating}
-      className={`px-5 py-2 rounded-full text-white font-semibold ${
-        isRecording ? "bg-red-500 hover:bg-red-600" : "bg-gray-500 cursor-not-allowed"
-      }`}
-    >
-      {isEvaluating ? "⏳ Evaluating..." : "⏹ Stop & Submit"}
-    </button>
-  )}
+                    {phase === "answer" && (
+                      <button
+                        onClick={() => {
+                          if (isRecording) {
+                            stopRecordingRef.current?.();
+                            setIsRecording(false);
+                            setTimer(0);
+                            setIsEvaluating(true);
+                          }
+                        }}
+                        disabled={!isRecording || isEvaluating}
+                        className={`px-5 py-2 rounded-full text-white font-semibold ${
+                          isRecording
+                            ? "bg-red-500 hover:bg-red-600"
+                            : "bg-gray-500 cursor-not-allowed"
+                        }`}
+                      >
+                        {isEvaluating ? "⏳ Evaluating..." : "⏹ Stop & Submit"}
+                      </button>
+                    )}
 
-  <button
-    onClick={handleSkip}
-    disabled={isEvaluating}
-    className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
-  >
-    Skip ❌
-  </button>
-</div>
+                    <button
+                      onClick={handleSkip}
+                      disabled={isEvaluating}
+                      className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
+                    >
+                      Skip ❌
+                    </button>
+                  </div>
                 </div>
               </div>
 
               <p className="text-center text-sm text-gray-400 italic mt-10">
-                💡 Tip: Answer naturally. Maintain eye contact and speak clearly and confidently.
+                💡 Tip: Answer naturally. Maintain eye contact and speak clearly
+                and confidently.
               </p>
             </div>
           </div>

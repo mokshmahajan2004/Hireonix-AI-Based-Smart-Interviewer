@@ -70,10 +70,13 @@ const EditProfile = () => {
         const formData = new FormData();
         formData.append("file", file);
 
-        const res = await fetch("http://localhost:8000/upload-profile", {
-          method: "POST",
-          body: formData,
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/upload-profile`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
 
         if (!res.ok) throw new Error("Cloudinary upload failed");
         const data = await res.json();
