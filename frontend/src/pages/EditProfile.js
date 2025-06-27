@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
-import { auth, storage } from "../Config";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FiEdit3 } from "react-icons/fi";
 import imageCompression from "browser-image-compression";
-import Sidebar from "../components/Sidebar"; // ✅ Import
+import Sidebar from "../components/Sidebar";
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth } from "../Config";
 
 const EditProfile = () => {
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [preview, setPreview] = useState("");
   const [file, setFile] = useState(null);
@@ -22,7 +22,7 @@ const EditProfile = () => {
     const storedName = localStorage.getItem("username");
     const storedPhoto = localStorage.getItem("photoURL");
 
-    setName(currentUser?.displayName || storedName || "");
+    setFullName(currentUser?.displayName || storedName || "");
     setPhotoURL(currentUser?.photoURL || storedPhoto || "");
     setPreview(currentUser?.photoURL || storedPhoto || "");
   }, []);
@@ -63,42 +63,57 @@ const EditProfile = () => {
 
     try {
       let finalPhotoURL = photoURL;
+      let photoPublicId = undefined;
 
+      // Upload to Cloudinary if new image selected
       if (file) {
-        const storageRef = ref(storage, `user_photos/${auth.currentUser.uid}-${Date.now()}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        const formData = new FormData();
+        formData.append("file", file);
 
-        await new Promise((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            null,
-            reject,
-            async () => {
-              finalPhotoURL = await getDownloadURL(uploadTask.snapshot.ref);
-              resolve();
-            }
-          );
+        const res = await fetch("http://localhost:8000/upload-profile", {
+          method: "POST",
+          body: formData,
         });
+
+        if (!res.ok) throw new Error("Cloudinary upload failed");
+        const data = await res.json();
+
+        finalPhotoURL = data.url;
+        photoPublicId = data.public_id;
       }
 
+      // Update Firebase Auth Profile
       await updateProfile(auth.currentUser, {
-        displayName: name,
+        displayName: fullName,
         photoURL: finalPhotoURL || null,
       });
 
       await auth.currentUser.reload();
       const updatedUser = auth.currentUser;
 
+      // Prepare Firestore update
+      const userRef = doc(db, "users", updatedUser.uid);
+      const userData = {
+        name: updatedUser.displayName,
+        email: updatedUser.email,
+        photoURL: finalPhotoURL,
+        updatedAt: new Date(),
+      };
+      if (photoPublicId) userData.photoPublicId = photoPublicId;
+
+      await setDoc(userRef, userData, { merge: true });
+
+      // LocalStorage sync
       localStorage.setItem("username", updatedUser.displayName || "");
       localStorage.setItem("photoURL", updatedUser.photoURL || "");
 
+      // Success
       window.dispatchEvent(new Event("profileUpdated"));
-
       toast.success("✅ Profile updated");
       navigate("/dashboard");
     } catch (err) {
       toast.error("❌ Error updating profile");
-      console.error(err);
+      console.error("Profile update error:", err);
     } finally {
       setLoading(false);
     }
@@ -123,11 +138,13 @@ const EditProfile = () => {
                 />
               ) : (
                 <div className="w-full h-full bg-gray-700 flex items-center justify-center text-yellow-300 font-bold text-xl">
-                  {name?.charAt(0)?.toUpperCase() || "U"}
+                  {fullName?.charAt(0)?.toUpperCase() || "U"}
                 </div>
               )}
             </div>
-            <p className="text-sm text-gray-400 mb-2">Upload a new profile photo</p>
+            <p className="text-sm text-gray-400 mb-2">
+              Upload a new profile photo
+            </p>
 
             <label className="cursor-pointer inline-block bg-gray-700 text-white px-4 py-1.5 rounded-md text-sm hover:bg-gray-600 transition">
               Choose File
@@ -142,11 +159,13 @@ const EditProfile = () => {
 
           <form onSubmit={handleUpdate} className="space-y-5">
             <div className="relative">
-              <label className="text-sm block mb-1 text-gray-300">Full Name</label>
+              <label className="text-sm block mb-1 text-gray-300">
+                Full Name
+              </label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 disabled={!editable}
                 className={`w-full bg-[#0f172a] border ${
                   editable ? "border-yellow-400" : "border-gray-600"

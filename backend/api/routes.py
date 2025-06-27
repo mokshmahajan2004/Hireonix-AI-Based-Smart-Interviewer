@@ -17,8 +17,9 @@ from fastapi import Form
 from firebase import save_profile_to_firestore
 from services.pdf_uploader import convert_md_to_pdf, upload_pdf_to_firebase
 from fastapi import UploadFile, File, Form
-from firebase import upload_profile_picture_and_save_url
-
+from fastapi import APIRouter, UploadFile, File
+from utils.cloudinary import cloudinary
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
@@ -106,16 +107,10 @@ def save_profile(profile: CandidateProfile):
     return {"success": success}
 
 
-@router.post("/upload-profile-pic")
-async def upload_profile_pic(email: str = Form(...), file: UploadFile = File(...)):
-    temp_file_path = f"temp_{file.filename}"
-    with open(temp_file_path, "wb") as f:
-        content = await file.read()
-        f.write(content)
-
-    image_url = upload_profile_picture_and_save_url(email, temp_file_path)
-
-    import os
-    os.remove(temp_file_path)
-
-    return {"message": "Profile picture uploaded successfully", "url": image_url}
+@router.post("/upload-profile")
+async def upload_profile_image(file: UploadFile = File(...)):
+    try:
+        result = cloudinary.uploader.upload(file.file, folder="profile_images")
+        return {"url": result["secure_url"]}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
