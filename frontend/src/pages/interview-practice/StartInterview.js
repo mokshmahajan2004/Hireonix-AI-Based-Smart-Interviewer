@@ -212,33 +212,47 @@ const StartInterview = () => {
                   </div>
 
                   <div className="flex justify-center gap-4 mt-6">
-                    {phase === "answer" && (
-                      <button
-                        onClick={() => {
-                          if (isRecording) {
-                            stopRecordingRef.current?.();
-                            setIsRecording(false);
-                            setTimer(0);
-                            setIsEvaluating(true);
-                          }
-                        }}
-                        disabled={!isRecording || isEvaluating}
-                        className={`px-5 py-2 rounded-full text-white font-semibold ${
-                          isRecording ? "bg-red-500 hover:bg-red-600" : "bg-gray-500 cursor-not-allowed"
-                        }`}
-                      >
-                        {isEvaluating ? "⏳ Evaluating..." : "⏹ Stop & Submit"}
-                      </button>
-                    )}
+  {phase === "prep" && (
+    <button
+      onClick={() => {
+        setPhase("answer");
+        setTimer(90);
+        startRecordingRef.current?.();
+        setIsRecording(true);
+      }}
+      className="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-full text-white font-semibold"
+    >
+      ⏩ Skip Prep & Start Answering
+    </button>
+  )}
 
-                    <button
-                      onClick={handleSkip}
-                      disabled={isEvaluating}
-                      className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
-                    >
-                      Skip ❌
-                    </button>
-                  </div>
+  {phase === "answer" && (
+    <button
+      onClick={() => {
+        if (isRecording) {
+          stopRecordingRef.current?.();
+          setIsRecording(false);
+          setTimer(0);
+          setIsEvaluating(true);
+        }
+      }}
+      disabled={!isRecording || isEvaluating}
+      className={`px-5 py-2 rounded-full text-white font-semibold ${
+        isRecording ? "bg-red-500 hover:bg-red-600" : "bg-gray-500 cursor-not-allowed"
+      }`}
+    >
+      {isEvaluating ? "⏳ Evaluating..." : "⏹ Stop & Submit"}
+    </button>
+  )}
+
+  <button
+    onClick={handleSkip}
+    disabled={isEvaluating}
+    className="bg-gray-500 hover:bg-gray-600 px-5 py-2 rounded-full text-white font-semibold"
+  >
+    Skip ❌
+  </button>
+</div>
                 </div>
               </div>
 
