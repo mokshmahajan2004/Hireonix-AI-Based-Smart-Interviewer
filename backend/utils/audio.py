@@ -2,9 +2,12 @@ import whisper
 import subprocess
 import os
 
-model = whisper.load_model("base")
-
 def transcribe_audio(file_path: str) -> str:
+    
+    os.environ["TRANSFORMERS_CACHE"] = "/tmp/hf_cache"
+    os.environ["TORCH_HOME"] = "/tmp/torch_cache"
+
+    model = whisper.load_model("base")
     wav_path = file_path.replace(".webm", ".wav")
     command = [
         "ffmpeg", "-y", "-i", file_path,
