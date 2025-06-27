@@ -32,6 +32,7 @@ const handleGoogleLogin = async (setError) => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     console.log("Google Sign-In:", result.user);
+    localStorage.setItem("email", result.user.email);  // ✅ Store email
     setError("");
   } catch (error) {
     console.error("Google login error:", error);
@@ -44,6 +45,7 @@ const handleEmailPasswordLogin = async (email, password, setError) => {
   try {
     const userCred = await signInWithEmailAndPassword(auth, email, password);
     console.log("User signed in:", userCred.user);
+    localStorage.setItem("email", userCred.user.email);  // ✅ Store email
     setError("");
     return true;
   } catch (error) {
