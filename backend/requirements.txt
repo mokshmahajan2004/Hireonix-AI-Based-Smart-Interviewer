@@ -5,6 +5,7 @@ pyttsx3
 numpy
 scipy
 python-multipart
+git+https://github.com/openai/whisper.git
 pydantic
 python-dotenv
 httpx
