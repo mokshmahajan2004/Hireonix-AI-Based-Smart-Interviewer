@@ -2,7 +2,6 @@ fastapi
 uvicorn
 openai
 pyttsx3
-git+https://github.com/openai/whisper.git
 numpy
 scipy
 python-multipart
@@ -14,3 +13,6 @@ firebase-admin
 google-cloud-storage
 markdown2
 weasyprint==60.2
+transformers
+torch
+ffmpeg-python

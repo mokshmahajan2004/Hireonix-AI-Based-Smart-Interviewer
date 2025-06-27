@@ -1,8 +1,8 @@
-import whisper
+from transformers import pipeline
 import subprocess
 import os
 
-model = whisper.load_model("base")
+pipe = pipeline("automatic-speech-recognition", model="openai/whisper-base", framework="pt")
 
 def transcribe_audio(file_path: str) -> str:
     wav_path = file_path.replace(".webm", ".wav")
@@ -17,6 +17,6 @@ def transcribe_audio(file_path: str) -> str:
         print("❌ FFmpeg STDERR:", e.stderr.decode())
         raise RuntimeError(f"FFmpeg failed: {e.stderr.decode()}")
 
-    result = model.transcribe(wav_path)
+    result = pipe(wav_path)
     os.remove(wav_path)
     return result["text"]
