@@ -1,5 +1,5 @@
 // Enhanced ResumeScreening with skill keyword highlighter and dynamic job role insertion
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Upload, FileText, BarChart3 } from "lucide-react";
 import Sidebar from "../components/Sidebar";
@@ -17,15 +17,15 @@ const ResumeScreening = () => {
   const [missingKeywords, setMissingKeywords] = useState([]);
   const [rewrites, setRewrites] = useState([]);
 
+  const uploadSectionRef = useRef(null); // ✅ scroll target ref
 
-  
-const [llmSections, setLlmSections] = useState({
-  matchScore: "",
-  missingSkills: [],
-  improvementTips: [],
-  summary: "",
-  bulletRewrites: [], // 🔥 new field
-});
+  const [llmSections, setLlmSections] = useState({
+    matchScore: "",
+    missingSkills: [],
+    improvementTips: [],
+    summary: "",
+    bulletRewrites: [],
+  });
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -43,60 +43,45 @@ const [llmSections, setLlmSections] = useState({
     words.forEach((w) => (freq[w] = (freq[w] || 0) + 1));
     return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, topN).map(([word]) => word);
   };
-const compareSkills = () => {
-  const keywords = extractKeywords(jobDesc);
-  const resumeWords = resumeText.toLowerCase();
-  const matched = [];
-  const missing = [];
 
-  keywords.forEach((word) => {
-    if (resumeWords.includes(word)) matched.push(word);
-    else missing.push(word);
-  });
+  const compareSkills = () => {
+    const keywords = extractKeywords(jobDesc);
+    const resumeWords = resumeText.toLowerCase();
+    const matched = [];
+    const missing = [];
 
-  setMatchedKeywords(matched);
-  setMissingKeywords(missing);
-
-  // ✅ LLM-like mocked result
-  setLlmSections({
-    matchScore: "88/100 - Strong technical match, but lacks some preferred skills.",
-    missingSkills: ["Git", "Figma", "RESTful APIs"],
-    improvementTips: [
-      "Add version control tools like Git.",
-      "Mention exposure to RESTful APIs.",
-      "Include familiarity with design tools like Figma or Adobe XD.",
-    ],
-    summary:
-      "Your resume is technically strong and well-aligned for frontend roles. To further improve, focus on adding missing skills and quantifiable achievements.",
-  });
-
-  // ✅ Set bullet rewrites
-  setRewrites([
-    {
-      original: "Used Flask APIs and React UI to achieve 92% accuracy in CNN-based landmark identification.",
-      improved: "**Improved:** Leveraged Flask APIs and React UI to drive a 92% accuracy rate in CNN-based landmark identification.",
-      showImproved: false,
-    },
-    {
-      original: "Collaborated with cross-functional teams to ensure timely and high-quality project delivery.",
-      improved: "**Improved:** Partnered with cross-functional teams to deliver high-impact solutions on time with exceptional quality.",
-      showImproved: false,
-    },
-  ]);
-};
-
-
-
-
-  const highlightText = (text, matched, missing) => {
-    const allWords = [...matched, ...missing].sort((a, b) => b.length - a.length);
-    let highlighted = text;
-    allWords.forEach((word) => {
-      const color = matched.includes(word) ? "#4ade80" : "#f87171";
-      const regex = new RegExp(`\\b${word}\\b`, "gi");
-      highlighted = highlighted.replace(regex, `<mark style="background:${color}; padding:2px 4px; border-radius:4px">${word}</mark>`);
+    keywords.forEach((word) => {
+      if (resumeWords.includes(word)) matched.push(word);
+      else missing.push(word);
     });
-    return highlighted;
+
+    setMatchedKeywords(matched);
+    setMissingKeywords(missing);
+
+    setLlmSections({
+      matchScore: "88/100 - Strong technical match, but lacks some preferred skills.",
+      missingSkills: ["Git", "Figma", "RESTful APIs"],
+      improvementTips: [
+        "Add version control tools like Git.",
+        "Mention exposure to RESTful APIs.",
+        "Include familiarity with design tools like Figma or Adobe XD.",
+      ],
+      summary:
+        "Your resume is technically strong and well-aligned for frontend roles. To further improve, focus on adding missing skills and quantifiable achievements.",
+    });
+
+    setRewrites([
+      {
+        original: "Used Flask APIs and React UI to achieve 92% accuracy in CNN-based landmark identification.",
+        improved: "**Improved:** Leveraged Flask APIs and React UI to drive a 92% accuracy rate in CNN-based landmark identification.",
+        showImproved: false,
+      },
+      {
+        original: "Collaborated with cross-functional teams to ensure timely and high-quality project delivery.",
+        improved: "**Improved:** Partnered with cross-functional teams to deliver high-impact solutions on time with exceptional quality.",
+        showImproved: false,
+      },
+    ]);
   };
 
   const StepIndicator = () => {
@@ -114,10 +99,18 @@ const compareSkills = () => {
             onClick={() => stepItem.number < step && setStep(stepItem.number)}
           >
             <div className="flex flex-col items-center">
-              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-lg font-bold z-10 transition-all duration-300 ${step === stepItem.number ? "bg-yellow-400 text-black shadow-xl ring-4 ring-yellow-300" : step > stepItem.number ? "bg-green-500 text-white" : "border-2 border-gray-500 text-white bg-[#1e293b]"}`}>{step > stepItem.number ? <Check size={18} /> : stepItem.icon}</div>
-              <p className={`mt-2 text-xs md:text-sm text-center font-medium w-24 md:w-32 transition-colors duration-200 ${step === stepItem.number ? "text-white" : "text-gray-400 group-hover:text-yellow-300"}`}>{stepItem.label}</p>
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-lg font-bold z-10 transition-all duration-300 ${step === stepItem.number ? "bg-yellow-400 text-black shadow-xl ring-4 ring-yellow-300" : step > stepItem.number ? "bg-green-500 text-white" : "border-2 border-gray-500 text-white bg-[#1e293b]"}`}>
+                {step > stepItem.number ? <Check size={18} /> : stepItem.icon}
+              </div>
+              <p className={`mt-2 text-xs md:text-sm text-center font-medium w-24 md:w-32 transition-colors duration-200 ${step === stepItem.number ? "text-white" : "text-gray-400 group-hover:text-yellow-300"}`}>
+                {stepItem.label}
+              </p>
             </div>
-            {index < steps.length - 1 && <div className="hidden sm:block w-10 md:w-16 h-1 bg-gray-600 mx-2 mt-1 relative"><div className={`absolute top-0 left-0 h-full transition-all duration-300 ${step > stepItem.number ? "bg-yellow-400 w-full" : "bg-gray-600 w-0"}`}></div></div>}
+            {index < steps.length - 1 && (
+              <div className="hidden sm:block w-10 md:w-16 h-1 bg-gray-600 mx-2 mt-1 relative">
+                <div className={`absolute top-0 left-0 h-full transition-all duration-300 ${step > stepItem.number ? "bg-yellow-400 w-full" : "bg-gray-600 w-0"}`}></div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -126,50 +119,171 @@ const compareSkills = () => {
 
   return (
     <div className="min-h-screen flex bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
-    <Sidebar />
-<main className="flex-1 transition-all duration-300 ml-16 group-hover:ml-56 px-4 sm:px-6 pt-24 pb-16 bg-[#020617] max-w-full md:max-w-[calc(100%-4rem)] mx-auto">
-    <div className="min-h-screen bg-[#020617] text-white px-4 py-12 font-sans relative">
-      <div className="fixed top-0 left-0 h-1 bg-yellow-400 z-50 transition-all duration-500" style={{ width: `${(step - 1) * 50}%` }} />
-      <section className="text-center px-6 pt-16 pb-14 max-w-6xl mx-auto relative">
-  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-transparent to-yellow-400/10 blur-2xl pointer-events-none"></div>
-  
-  <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-yellow-400 mb-6 leading-tight drop-shadow-sm">
-    Supercharge Your Resume with AI
-  </h1>
-  
-  <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-    Leverage advanced AI to align your resume with top job descriptions and boost your chances of clearing any ATS (Applicant Tracking System). Let your resume speak the language recruiters understand.
-  </p>
+      <Sidebar />
+      <main className="flex-1 transition-all duration-300 ml-16 group-hover:ml-56 px-4 sm:px-6 pt-24 pb-16 bg-[#020617] max-w-full md:max-w-[calc(100%-4rem)] mx-auto">
+        <div className="min-h-screen bg-[#020617] text-white px-4 py-12 font-sans relative">
+          <div className="fixed top-0 left-0 h-1 bg-yellow-400 z-50 transition-all duration-500" style={{ width: `${(step - 1) * 50}%` }} />
+          <section className="text-center px-6 pt-16 pb-14 max-w-6xl mx-auto relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-transparent to-yellow-400/10 blur-2xl pointer-events-none"></div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-yellow-400 mb-6 leading-tight drop-shadow-sm">
+              Supercharge Your Resume with AI
+            </h1>
+            <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+              Leverage advanced AI to align your resume with top job descriptions and boost your chances of clearing any ATS (Applicant Tracking System). Let your resume speak the language recruiters understand.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <button
+                className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-lg shadow-md transition duration-300"
+                onClick={() => {
+                  setStep(1);
+                  setTimeout(() => {
+                    uploadSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                }}
+              >
+                Get Started
+              </button>
+            </div>
+          </section>
 
-  <div className="mt-8 flex justify-center">
-    <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-lg shadow-md transition duration-300">
-      Get Started
-    </button>
-  </div>
-</section>
+          <StepIndicator />
 
-      <StepIndicator />
-      <AnimatePresence mode="wait">
-          {step === 3 && (
-            <motion.div key="step3" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }} className="max-w-6xl mx-auto px-4 sm:px-6 mt-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <ResultCard title="🎯 Match Score" content={llmSections.matchScore} />
-                <ResultCard title="❌ Critical Missing Skills" content={llmSections.missingSkills} />
-                <ResultCard title="🧠 How the Candidate Can Improve" content={llmSections.improvementTips} />
-                <ResultCard title="💡 Additional Feedback" content={llmSections.summary} />
+          <AnimatePresence mode="wait">
+            {step === 1 && (
+              <div ref={uploadSectionRef}>
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.5 }}
+                  className="max-w-3xl mx-auto border-2 border-dashed border-cyan-500 rounded-xl bg-[#0f172a]"
+                >
+                  <div className="bg-[#1e293b] text-sm font-semibold text-white px-6 py-3 border-b border-cyan-800 rounded-t-xl">
+                    UPLOAD YOUR RESUME
+                  </div>
+                  <div className="flex flex-col items-center justify-center py-16 px-4">
+                    {!loading ? (
+                      <>
+                        <h2 className="text-xl md:text-2xl font-bold text-center mb-4">Upload your resume to get started</h2>
+                        <label className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-6 rounded-lg cursor-pointer transition mb-2">
+                          Upload your resume
+                          <input type="file" accept=".pdf,.doc,.docx" onChange={handleUpload} hidden />
+                        </label>
+                        {resume && (
+                          <>
+                            <p className="text-sm text-green-400 mt-1">Uploaded: {resume.name}</p>
+                            <button className="mt-4 text-sm px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md" onClick={() => setStep(2)}>
+                              Continue →
+                            </button>
+                          </>
+                        )}
+                        <p className="text-sm text-gray-400">as .pdf or .docx file</p>
+                        <p className="text-sm text-cyan-400 mt-2 underline cursor-pointer hover:text-cyan-300">Or paste resume text</p>
+                      </>
+                    ) : (
+                      <div className="text-center">
+                        <h3 className="text-xl font-bold mb-2">Analyzing...</h3>
+                        <p className="text-sm text-gray-400 mb-6">Analyzing your resume…</p>
+                        <div className="w-60 h-4 bg-gray-700 rounded-full overflow-hidden mx-auto">
+                          <div className="h-full w-full bg-yellow-400 animate-pulse"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
               </div>
-              {rewrites.length > 0 && (
-                <div className="mt-10 bg-[#0f172a] border border-yellow-400 rounded-xl p-6">
-                  <h2 className="text-xl font-semibold text-yellow-400 mb-4 text-center">✍ Resume Bullet Enhancements</h2>
-                  <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
+            )}
+
+            {step === 2 && (
+              <motion.div
+                key="step2"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-5xl mx-auto border border-cyan-600 rounded-xl bg-[#0f172a]"
+              >
+                <div className="grid md:grid-cols-2">
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-white mb-2">Paste a Job Description</h3>
+                    <textarea
+                      value={jobDesc}
+                      onChange={(e) => setJobDesc(e.target.value)}
+                      rows="10"
+                      className="w-full p-4 text-sm bg-[#1e293b] border border-cyan-700 text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400 font-mono"
+                      placeholder="Paste job description here..."
+                    ></textarea>
+                    <p className="text-xs text-gray-500 mt-1 text-right">{jobDesc.trim().split(/\s+/).length} words</p>
+                    <button onClick={() => { compareSkills(); setStep(3); }} className="mt-4 bg-yellow-400 text-black px-6 py-2 rounded-lg hover:bg-yellow-500 font-semibold">
+                      Scan Resume →
+                    </button>
+                  </div>
+                  <div className="p-6 border-t md:border-t-0 md:border-l border-cyan-800">
+                    <h3 className="text-lg font-semibold text-white mb-4 text-center">Or Select a Sample Job Role</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {sampleJobRolesData.map((role) => (
+                        <button
+                          key={role.title}
+                          onClick={() => setJobDesc(role.description)}
+                          title={`Insert ${role.title} JD`}
+                          className="bg-[#1e293b] border border-cyan-700 hover:border-yellow-400 hover:bg-[#111827] text-white text-sm py-3 px-4 rounded-lg shadow-sm transition duration-300 text-left hover:text-yellow-300"
+                        >
+                          {role.title}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+
+            {step === 3 && (
+  <motion.div
+    key="step3"
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -30 }}
+    transition={{ duration: 0.5 }}
+    className="max-w-5xl mx-auto px-4 sm:px-6 space-y-6" // uniform spacing
+  >
+    <ResultCard
+      title="Match Score"
+      icon="🎯"
+      content={llmSections.matchScore}
+    />
+    <ResultCard
+      title="Critical Missing Skills"
+      icon="❌"
+      content={llmSections.missingSkills}
+    />
+    <ResultCard
+      title="How the Candidate Can Improve"
+      icon="🧠"
+      content={llmSections.improvementTips}
+    />
+    <ResultCard
+      title="Additional Feedback"
+      icon="💡"
+      content={llmSections.summary}
+    />
+
+    {/* Ensure margin and layout consistency */}
+    {rewrites.length > 0 && (
+      <div className="bg-[#0f172a] border border-yellow-500 rounded-xl px-6 py-6 text-white space-y-4">
+        <h2 className="text-xl font-bold text-yellow-400 flex items-center gap-2">
+          📝 AI Bullet Rewriter
+        </h2>
+        <BulletRewriter bullets={rewrites} setBullets={setRewrites} />
+      </div>
+    )}
+  </motion.div>
+)}
+
+          </AnimatePresence>
+        </div>
+      </main>
     </div>
-        </main>
-  </div>
   );
 };
 
