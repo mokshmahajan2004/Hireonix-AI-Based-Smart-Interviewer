@@ -9,6 +9,7 @@ origins = [
     "http://localhost:3000",
     "https://hireonix-ai-based-smart-interviewer-b5ylij7ym.vercel.app",
     "https://hireonix-ai-based-smart-i-git-0d0a5d-mokshmahajan2004s-projects.vercel.app/"
+    "https://hireonix-ai-based-smart-interviewer.vercel.app/"
 ]
 
 app.add_middleware(
