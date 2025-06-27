@@ -1,66 +1,67 @@
 # 🧠 AI Interview Report
-    
+
 **Candidate:** medhansh
 **Email:** medhanshjainfor@gmail.com
 **Role:** SDE
 **Skills:** ML, DL, NLP
-**Experience:** 
-**Achievements:** 
-**Notes:** 
-    
+**Experience:**
+**Achievements:**
+**Notes:**
+
 **Total Questions:** 12
-    
+
 ---
 
-
 ### Question 1
-**Q:**  1. Can you tell us a little about your experience as an SDE, and how you've applied your ML, DL, and NLP skills in your past roles?
-**A:**  As in a SDE, I have built scalable systems and integrated ML models into production pipelines. I have applied DLN and LP2 products like sentiment analysis chatbots and automated text classification to improve product intelligence.
 
- Sure, I'd be happy to evaluate the Q&A and provide feedback!
+**Q:** 1. Can you tell us a little about your experience as an SDE, and how you've applied your ML, DL, and NLP skills in your past roles?
+**A:** As in a SDE, I have built scalable systems and integrated ML models into production pipelines. I have applied DLN and LP2 products like sentiment analysis chatbots and automated text classification to improve product intelligence.
 
-Question:  1. Can you tell us a little about your experience as an SDE, and how you've applied your ML, DL, and NLP skills in your past roles?
+Sure, I'd be happy to evaluate the Q&A and provide feedback!
 
-Answer:  As a Software Development Engineer (SDE), I have built scalable systems and integrated machine learning (ML) models into production pipelines. I have applied deep learning (DL) and natural language processing (NLP) techniques in my past roles, including building sentiment analysis chatbots and implementing automated text classification systems to improve product intelligence.
+Question: 1. Can you tell us a little about your experience as an SDE, and how you've applied your ML, DL, and NLP skills in your past roles?
+
+Answer: As a Software Development Engineer (SDE), I have built scalable systems and integrated machine learning (ML) models into production pipelines. I have applied deep learning (DL) and natural language processing (NLP) techniques in my past roles, including building sentiment analysis chatbots and implementing automated text classification systems to improve product intelligence.
 
 Scores (out of 10):
 
-* Clarity: 7/10
-* Relevance: 8/10
-* Depth: 6/10
-* Technical Accuracy: 8/10
+- Clarity: 7/10
+- Relevance: 8/10
+- Depth: 6/10
+- Technical Accuracy: 8/10
 
 Feedback:
 
-* Clarity: The answer is generally clear, but some of the acronyms used (SDE, DL, NLP, LP2) may not be familiar to all interviewers. It would be helpful to spell out these acronyms at least once in the answer.
-* Relevance: The answer is relevant to the question and provides specific examples of how the candidate has applied ML, DL, and NLP skills in their past roles.
-* Depth: While the answer provides some details about the candidate's experience, it could benefit from more in-depth explanations of the specific projects and the candidate's contributions.
-* Technical Accuracy: The answer is technically accurate, but some of the acronyms used may not be familiar to all interviewers. It would be helpful to spell out these acronyms at least once in the answer.
+- Clarity: The answer is generally clear, but some of the acronyms used (SDE, DL, NLP, LP2) may not be familiar to all interviewers. It would be helpful to spell out these acronyms at least once in the answer.
+- Relevance: The answer is relevant to the question and provides specific examples of how the candidate has applied ML, DL, and NLP skills in their past roles.
+- Depth: While the answer provides some details about the candidate's experience, it could benefit from more in-depth explanations of the specific projects and the candidate's contributions.
+- Technical Accuracy: The answer is technically accurate, but some of the acronyms used may not be familiar to all interviewers. It would be helpful to spell out these acronyms at least once in the answer.
 
 Improvements:
 
-* Clarity: Consider spelling out acronyms at least once in the answer to ensure that interviewers are familiar with the terminology.
-* Depth: Provide more specific examples of projects and the candidate's contributions. Explain the impact of the projects and any challenges that were overcome.
-* Technical Accuracy: Ensure that all technical terminology is accurate and explained clearly.
+- Clarity: Consider spelling out acronyms at least once in the answer to ensure that interviewers are familiar with the terminology.
+- Depth: Provide more specific examples of projects and the candidate's contributions. Explain the impact of the projects and any challenges that were overcome.
+- Technical Accuracy: Ensure that all technical terminology is accurate and explained clearly.
 
 ---
 
 ### Question 2
-**Q:** 2. What types of projects have you worked on that involved machine learning, deep learning, or natural language processing?
-**A:**  I have worked on ML budgets like fraud, detection using classification models and DL based image delegation problems. In NLP, I built a bird, powered resume, parser and a chatbot for customer support automation.
 
- Sure, I'd be happy to help! Here are the scores and feedback for the given Q&A:
+**Q:** 2. What types of projects have you worked on that involved machine learning, deep learning, or natural language processing?
+**A:** I have worked on ML budgets like fraud, detection using classification models and DL based image delegation problems. In NLP, I built a bird, powered resume, parser and a chatbot for customer support automation.
+
+Sure, I'd be happy to help! Here are the scores and feedback for the given Q&A:
 
 **Question:** 2. What types of projects have you worked on that involved machine learning, deep learning, or natural language processing?
 
-**Answer:**  I have worked on ML budgets like fraud, detection using classification models and DL based image delegation problems. In NLP, I built a bird-powered resume parser and a chatbot for customer support automation.
+**Answer:** I have worked on ML budgets like fraud, detection using classification models and DL based image delegation problems. In NLP, I built a bird-powered resume parser and a chatbot for customer support automation.
 
 **Scores:**
 
-* Clarity: 8/10
-* Relevance: 8/10
-* Depth: 6/10
-* Examples: 7/10
+- Clarity: 8/10
+- Relevance: 8/10
+- Depth: 6/10
+- Examples: 7/10
 
 **Feedback and improvements:**
 
@@ -77,10 +78,11 @@ Overall, the answer is a good start but could benefit from providing more clarit
 ---
 
 ### Question 3
-**Q:** 3. Can you give an example of a particularly challenging ML/DL/NLP problem you've faced, and how you went about solving it?
-**A:**  A major challenge was improving the accuracy of an NLP model classifying noisy customer feedback, traditional models underperformed due to unstructured input. I find to the bird model with domains by sweat data and added people assessing steps boasting accuracy by 18%.
 
- Scores:
+**Q:** 3. Can you give an example of a particularly challenging ML/DL/NLP problem you've faced, and how you went about solving it?
+**A:** A major challenge was improving the accuracy of an NLP model classifying noisy customer feedback, traditional models underperformed due to unstructured input. I find to the bird model with domains by sweat data and added people assessing steps boasting accuracy by 18%.
+
+Scores:
 
 - Clarity: 3/10
 - Relevance: 4/10
@@ -90,7 +92,7 @@ Overall, the answer is a good start but could benefit from providing more clarit
 Feedback with improvements:
 
 Question: 3. Can you give an example of a particularly challenging ML/DL/NLP problem you've faced, and how you went about solving it?
-Answer:  A major challenge I encountered was improving the accuracy of a Natural Language Processing (NLP) model designed to classify noisy customer feedback. Traditional models underperformed due to the unstructured nature of the input. To tackle this issue, I applied the following steps:
+Answer: A major challenge I encountered was improving the accuracy of a Natural Language Processing (NLP) model designed to classify noisy customer feedback. Traditional models underperformed due to the unstructured nature of the input. To tackle this issue, I applied the following steps:
 
 1. I fine-tuned a bird model, specifically a BERT (Bidirectional Encoder Representations from Transformers) model.
 2. I trained the model with domain-specific data to better understand the nuances of customer feedback.
@@ -101,28 +103,30 @@ By implementing these steps, I was able to boost the model's accuracy by 18%.
 ---
 
 ### Question 4
-**Q:** 4. How do you stay up-to-date with the latest developments and trends in the field of ML/DL/NLP?
-**A:**  I stay updated by regularly reading papers on ARX, ARXV, following key conferences like ACL and exploring updates from blogs like OpenAI, HuggingFace etc. I also stay at the one-git-up and lend-in-two track, cutting-ass tools and community discussions.
 
- Sure, I'd be happy to evaluate the given Q&A and provide feedback with improvements using markdown formatting.
+**Q:** 4. How do you stay up-to-date with the latest developments and trends in the field of ML/DL/NLP?
+**A:** I stay updated by regularly reading papers on ARX, ARXV, following key conferences like ACL and exploring updates from blogs like OpenAI, HuggingFace etc. I also stay at the one-git-up and lend-in-two track, cutting-ass tools and community discussions.
+
+Sure, I'd be happy to evaluate the given Q&A and provide feedback with improvements using markdown formatting.
 
 Question: 4. How do you stay up-to-date with the latest developments and trends in the field of ML/DL/NLP?
-Answer:  I stay updated by regularly reading papers on arXiv, following key conferences like ACL, and exploring updates from blogs like OpenAI and Hugging Face. I also keep an eye on the latest tools and community discussions by staying one git-update ahead and contributing to open-source projects when possible.
+Answer: I stay updated by regularly reading papers on arXiv, following key conferences like ACL, and exploring updates from blogs like OpenAI and Hugging Face. I also keep an eye on the latest tools and community discussions by staying one git-update ahead and contributing to open-source projects when possible.
 
 #### Feedback:
 
-* The answer is well-structured and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
-* It is important to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
-* It is good to mention staying current with the latest tools and contributing to open-source projects.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
-* It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is well-structured and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
+- It is important to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
+- It is good to mention staying current with the latest tools and contributing to open-source projects.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
+- It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 8/10
-* Relevance: 8/10
-* Specificity: 7/10
-* Overall: 7.5/10
+- Clarity: 8/10
+- Relevance: 8/10
+- Specificity: 7/10
+- Overall: 7.5/10
+
 ```python
 
 ## Answer (2020-03-03)
@@ -145,6 +149,7 @@ Answer:  I stay updated by regularly reading papers on [arXiv](https://arxiv.org
 * Specificity: 8/10
 * Overall: 8.5/10
 ```
+
 The answer is clear and relevant to the question, and it gives specific sources that the candidate uses to stay updated, which is good. However, it could be more specific about how the candidate stays "one git-update ahead" and contributes to the community. Also, it would be helpful to mention any specific communities or forums that the candidate is active in.
 
 ## Answer (54)
@@ -154,16 +159,16 @@ Answer: I regularly read papers on arXiv, follow key conferences such as ACL, an
 
 #### Feedback:
 
-* The answer is clear, concise and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
-* Providing specific sources, such as "arXiv", "ACL", "OpenAI" and "Hugging Face" adds credibility to the answer.
-* Mentioning staying current with the latest tools and contributing to open-source projects is good, as it shows that the candidate is proactive in their learning and stays engaged with the community.
+- The answer is clear, concise and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
+- Providing specific sources, such as "arXiv", "ACL", "OpenAI" and "Hugging Face" adds credibility to the answer.
+- Mentioning staying current with the latest tools and contributing to open-source projects is good, as it shows that the candidate is proactive in their learning and stays engaged with the community.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 8/10
-* Overall: 8.5/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 8/10
+- Overall: 8.5/10
 
 ## Answer (40)
 
@@ -172,16 +177,16 @@ Answer: I stay updated by reading recent research papers on arXiv, attending and
 
 #### Feedback:
 
-* The answer is clear, relevant, and specific. The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
-* The candidate also mentions participating in online communities, which is a great way to stay engaged with the latest developments and trends.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
+- The answer is clear, relevant, and specific. The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
+- The candidate also mentions participating in online communities, which is a great way to stay engaged with the latest developments and trends.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 8/10
-* Overall: 8.5/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 8/10
+- Overall: 8.5/10
 
 ## Answer (27)
 
@@ -190,17 +195,17 @@ Answer: I regularly read papers on arXiv, follow key conferences like ACL, and k
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* It is good to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
-* It is also important to mention staying current with the latest tools and community discussions by participating in online forums, contributing to open-source projects, and staying one git-update ahead.
-* It would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- It is good to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
+- It is also important to mention staying current with the latest tools and community discussions by participating in online forums, contributing to open-source projects, and staying one git-update ahead.
+- It would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (25)
 
@@ -209,17 +214,17 @@ Answer: I stay updated by reading papers on arXiv, following key conferences lik
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* It is good to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
-* It is also important to mention staying current with the latest tools and community discussions by participating in forums, contributing to open-source projects, and staying one git-update ahead.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- It is good to provide specific sources, such as "arXiv" and "ACL" rather than abbreviations that may not be familiar to the interviewer.
+- It is also important to mention staying current with the latest tools and community discussions by participating in forums, contributing to open-source projects, and staying one git-update ahead.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (23)
 
@@ -228,18 +233,18 @@ Answer: I stay updated by regularly reading papers on arXiv, attending and follo
 
 #### Feedback:
 
-* The answer is clear, concise, and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "NeurIPS", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
-* Mentioning participating in online communities, contributing to open-source projects and attending conferences like ACL, NAACL, EMNLP, NeurIPS shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
-* It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "NeurIPS", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
+- Mentioning participating in online communities, contributing to open-source projects and attending conferences like ACL, NAACL, EMNLP, NeurIPS shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
+- It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 8/10
-* Overall: 8.5/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 8/10
+- Overall: 8.5/10
 
 ## Answer (20)
 
@@ -248,17 +253,17 @@ Answer: I stay updated by reading recent research papers on arXiv, attending and
 
 #### Feedback:
 
-* The answer is clear, concise and relevant.
-* The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
-* Participating in online communities and contributing to open-source projects is also a good sign of staying engaged with the latest developments.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
+- The answer is clear, concise and relevant.
+- The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
+- Participating in online communities and contributing to open-source projects is also a good sign of staying engaged with the latest developments.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (19)
 
@@ -267,17 +272,17 @@ Answer: I regularly read papers on arXiv, follow key conferences like ACL, NAACL
 
 #### Feedback:
 
-* The answer is well-structured and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
-* It is important to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
-* Mentioning participating in online forums, contributing to open-source projects and staying current with the latest tools and community discussions is good, as it shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is well-structured and covers the main aspects of staying up-to-date in the field of ML/DL/NLP.
+- It is important to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
+- Mentioning participating in online forums, contributing to open-source projects and staying current with the latest tools and community discussions is good, as it shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (18)
 
@@ -286,17 +291,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise and relevant.
-* The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
-* Participating in online communities and contributing to open-source projects is also a good sign of staying engaged with the latest developments.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
+- The answer is clear, concise and relevant.
+- The candidate mentions several sources they use to stay updated, including research papers, conferences, and blogs.
+- Participating in online communities and contributing to open-source projects is also a good sign of staying engaged with the latest developments.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" or contributes to the community.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (17)
 
@@ -305,17 +310,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" rather than abbreviations that may not be familiar to the interviewer.
-* It is also important to mention staying current with the latest tools and community discussions by participating in forums, contributing to open-source projects, and keeping track of the latest tools.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" rather than abbreviations that may not be familiar to the interviewer.
+- It is also important to mention staying current with the latest tools and community discussions by participating in forums, contributing to open-source projects, and keeping track of the latest tools.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (16)
 
@@ -324,17 +329,17 @@ Answer: I regularly read papers on arXiv, follow key conferences like ACL, NAACL
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
-* Mentioning participating in online forums, contributing to open-source projects and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
+- Mentioning participating in online forums, contributing to open-source projects and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (15)
 
@@ -343,17 +348,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (14)
 
@@ -362,17 +367,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (13)
 
@@ -381,17 +386,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate stays "one git-update ahead" and contributes to the community. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (12)
 
@@ -400,18 +405,18 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* Additionally mentioning staying one git-update ahead shows that the candidate is taking initiative to stay ahead of the latest developments.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- Additionally mentioning staying one git-update ahead shows that the candidate is taking initiative to stay ahead of the latest developments.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 8/10
-* Overall: 8.5/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 8/10
+- Overall: 8.5/10
 
 ## Answer (11)
 
@@ -420,17 +425,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear and relevant.
-* Providing specific sources such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear and relevant.
+- Providing specific sources such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 8/10
-* Relevance: 8/10
-* Specificity: 6/10
-* Overall: 7.5/10
+- Clarity: 8/10
+- Relevance: 8/10
+- Specificity: 6/10
+- Overall: 7.5/10
 
 ## Answer (9)
 
@@ -439,18 +444,18 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* Mentioning staying one git-update ahead is a good sign that the candidate takes the initiative to stay ahead of the latest developments.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- Mentioning staying one git-update ahead is a good sign that the candidate takes the initiative to stay ahead of the latest developments.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (8)
 
@@ -459,17 +464,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear and relevant to the question.
-* It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" rather than abbreviations that may not be familiar to the interviewer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear and relevant to the question.
+- It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" rather than abbreviations that may not be familiar to the interviewer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (7)
 
@@ -478,17 +483,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
-* Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would also be good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
+- Mentioning participating in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would also be good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (6)
 
@@ -497,17 +502,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear and relevant.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear and relevant.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (5)
 
@@ -516,17 +521,17 @@ Answer: I regularly read papers on arXiv, follow key conferences like ACL, NAACL
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (4)
 
@@ -535,17 +540,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise and relevant to the question.
-* It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays current with the latest tools. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise and relevant to the question.
+- It is good to provide specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" and "Towards Data Science" rather than abbreviations that may not be familiar to the interviewer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects and stays current with the latest tools. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (3)
 
@@ -554,17 +559,17 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (2)
 
@@ -573,18 +578,18 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* Mentioning staying one git-update ahead shows that the candidate takes the initiative to stay ahead of the latest developments.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- Mentioning staying one git-update ahead shows that the candidate takes the initiative to stay ahead of the latest developments.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ## Answer (1)
 
@@ -593,26 +598,27 @@ Answer: I stay updated by regularly reading papers on arXiv, following key confe
 
 #### Feedback:
 
-* The answer is clear, concise, and relevant to the question.
-* Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
-* Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
-* Mentioning staying one git-update ahead shows that the candidate takes the initiative to stay ahead of the latest developments.
-* However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
+- The answer is clear, concise, and relevant to the question.
+- Providing specific sources, such as "arXiv", "ACL", "NAACL", "EMNLP", "OpenAI", "Hugging Face", and "Towards Data Science" adds credibility to the answer.
+- Mentioning participation in online communities, contributing to open-source projects, and staying current with the latest tools shows that the candidate is proactive in their learning and stays engaged with the community.
+- Mentioning staying one git-update ahead shows that the candidate takes the initiative to stay ahead of the latest developments.
+- However, it would be helpful to add specific examples of how the candidate contributes to open-source projects, stays current with the latest tools, and stays one git-update ahead. It would be also good to mention any specific communities or forums that the candidate is active in.
 
 #### Scores:
 
-* Clarity: 9/10
-* Relevance: 9/10
-* Specificity: 7/10
-* Overall: 8/10
+- Clarity: 9/10
+- Relevance: 9/10
+- Specificity: 7/10
+- Overall: 8/10
 
 ---
 
 ### Question 5
-**Q:** 5. How do you approach designing and implementing ML/DL/NLP solutions that are scalable, efficient, and maintainable?
-**A:**  I follow modular design principles using pipeline with tools like MLflow and Airflow and ensure models like containerized with proper CICD. I also prioritize clean code, locking, washing control and regular monitoring for long term maintainability.
 
- **Scale: 80%**
+**Q:** 5. How do you approach designing and implementing ML/DL/NLP solutions that are scalable, efficient, and maintainable?
+**A:** I follow modular design principles using pipeline with tools like MLflow and Airflow and ensure models like containerized with proper CICD. I also prioritize clean code, locking, washing control and regular monitoring for long term maintainability.
+
+**Scale: 80%**
 
 The answer provides a good understanding of the candidate's approach to designing and implementing ML/DL/NLP solutions that are scalable, efficient, and maintainable. The use of modular design principles, pipelines, and tools like MLflow and Airflow shows that the candidate understands the importance of organizing and structuring their work in a scalable manner. The mention of containerization and CICD also demonstrates an understanding of the need for efficient deployment and maintenance of solutions.
 
@@ -629,75 +635,77 @@ Overall, the answer shows a solid understanding of the concepts related to desig
 ---
 
 ### Question 6
+
 **Q:** 6. Can you tell us about your experience with different ML/DL frameworks and libraries, such as TensorFlow, PyTorch, or SpaCy?
-**A:**  Live. I have used TensorFlow and PyTorch extensively for building and training depending models including CNNs and Transformers. For an NLP task, I rely on spicy for fast tokenization and hugging phase Transformers for state of the art models like Bird and GPT.
+**A:** Live. I have used TensorFlow and PyTorch extensively for building and training depending models including CNNs and Transformers. For an NLP task, I rely on spicy for fast tokenization and hugging phase Transformers for state of the art models like Bird and GPT.
 
- Sure, I'd be happy to evaluate the given Q&A and provide feedback in markdown format.
+Sure, I'd be happy to evaluate the given Q&A and provide feedback in markdown format.
 
-Question: 6. Can you tell us about your experience with different ML/DL frameworks and libraries, such as TensorFlow, PyTorch, or SpaCy?
------------------------------------------------------------------------------------------------------------------------
+## Question: 6. Can you tell us about your experience with different ML/DL frameworks and libraries, such as TensorFlow, PyTorch, or SpaCy?
 
-Answer: 6.5/10
-------------
+## Answer: 6.5/10
 
 Live.\
 I have used TensorFlow and PyTorch extensively for building and training dependent models including CNNs and Transformers.\
 For an NLP task, I rely on spicy for fast tokenization and hugging face Transformers for state-of-the-art models like BERT and GPT.\
-* Good job mentioning specific ML/DL frameworks and libraries, and giving examples of how you have used them.
-* However, there are a few grammatical errors and typos that need to be corrected.
-* It would be better if you can explain your experience with each framework/library in more detail and provide specific use cases.
 
-Specific feedback:
-------------------
+- Good job mentioning specific ML/DL frameworks and libraries, and giving examples of how you have used them.
+- However, there are a few grammatical errors and typos that need to be corrected.
+- It would be better if you can explain your experience with each framework/library in more detail and provide specific use cases.
 
-* Correct the spelling of "Live" to "I have" for a better start.
-* Specify what kind of dependent models you have built with TensorFlow and PyTorch, and give a brief description of the use cases.
-* Explain what SpaCy is and how it is different from Hugging Face Transformers. Also, correct the spelling of "spicy" to "SpaCy".
-* Be more specific about how you have used Hugging Face Transformers, e.g., for what NLP task, and what kind of models you have used.
+## Specific feedback:
+
+- Correct the spelling of "Live" to "I have" for a better start.
+- Specify what kind of dependent models you have built with TensorFlow and PyTorch, and give a brief description of the use cases.
+- Explain what SpaCy is and how it is different from Hugging Face Transformers. Also, correct the spelling of "spicy" to "SpaCy".
+- Be more specific about how you have used Hugging Face Transformers, e.g., for what NLP task, and what kind of models you have used.
 
 I hope this feedback helps!
 
 ---
 
 ### Question 7
-**Q:** 7. How do you ensure the quality of your ML/DL/NLP models, and what methods do you use to evaluate and improve their performance?
-**A:**  I ensure model quality through techniques like cross validation, stratified sampling and consistent data processing. I track metrics like F1 score, ROC AUC Precision Recall and use tools like TensorFlow and Bades and Bices for performance monitoring and tuning.
 
- Sure, I'd be happy to evaluate the answer to the question regarding ensuring the quality of ML/DL/NLP models.
+**Q:** 7. How do you ensure the quality of your ML/DL/NLP models, and what methods do you use to evaluate and improve their performance?
+**A:** I ensure model quality through techniques like cross validation, stratified sampling and consistent data processing. I track metrics like F1 score, ROC AUC Precision Recall and use tools like TensorFlow and Bades and Bices for performance monitoring and tuning.
+
+Sure, I'd be happy to evaluate the answer to the question regarding ensuring the quality of ML/DL/NLP models.
 
 Question: 7. How do you ensure the quality of your ML/DL/NLP models, and what methods do you use to evaluate and improve their performance?
 
-Answer:  I ensure model quality through techniques like cross validation, stratified sampling and consistent data processing. I track metrics like F1 score, ROC AUC Precision Recall and use tools like TensorFlow and Bades and Bices for performance monitoring and tuning.
+Answer: I ensure model quality through techniques like cross validation, stratified sampling and consistent data processing. I track metrics like F1 score, ROC AUC Precision Recall and use tools like TensorFlow and Bades and Bices for performance monitoring and tuning.
 
 **Scores:**
 
-* Clarity: 7/10
-* Relevance: 8/10
-* Depth: 6/10
-* Accuracy: 9/10
+- Clarity: 7/10
+- Relevance: 8/10
+- Depth: 6/10
+- Accuracy: 9/10
 
 **Feedback:**
 
-* The answer starts off strong by mentioning several important techniques for ensuring model quality, such as cross validation, stratified sampling, and consistent data processing.
-* The answer could have been more clear on what specific methods are used to improve model performance, instead of just mentioning tools like TensorFlow and Bades and Bices.
-* It would have been beneficial to mention the importance of having a diverse and representative dataset, and how it can impact model performance.
-* The answer also could have discussed the process of hyperparameter tuning, which is an important step in improving model performance.
-* The answer is generally accurate, but the tools mentioned are not widely used, Tensorflow is a popular library for building models while Badhus and Bices are not known libraries in the ML/DL/NLP community.
+- The answer starts off strong by mentioning several important techniques for ensuring model quality, such as cross validation, stratified sampling, and consistent data processing.
+- The answer could have been more clear on what specific methods are used to improve model performance, instead of just mentioning tools like TensorFlow and Bades and Bices.
+- It would have been beneficial to mention the importance of having a diverse and representative dataset, and how it can impact model performance.
+- The answer also could have discussed the process of hyperparameter tuning, which is an important step in improving model performance.
+- The answer is generally accurate, but the tools mentioned are not widely used, Tensorflow is a popular library for building models while Badhus and Bices are not known libraries in the ML/DL/NLP community.
 
 **Improvements:**
 
-* Provide more specific examples of methods used to improve model performance
-* Discuss the importance of having a diverse and representative dataset
-* Include information about hyperparameter tuning
-* Be more accurate on the tools or libraries used.
+- Provide more specific examples of methods used to improve model performance
+- Discuss the importance of having a diverse and representative dataset
+- Include information about hyperparameter tuning
+- Be more accurate on the tools or libraries used.
 
 ---
 
 ### Question 8
-**Q:** 8. Can you give an example of a time when you had to explain a complex ML/DL/NLP concept to a non-technical audience, and how you went about it?
-**A:**  I want to explain how a recommendation system worked by comparing it to how Netflix suggests movies based on user preferences. I use simple analogies, visuals and a viral jargon to ensure the stakeholders clearly understood the models value and logic.
 
- Sure, here is the evaluation:
+**Q:** 8. Can you give an example of a time when you had to explain a complex ML/DL/NLP concept to a non-technical audience, and how you went about it?
+**A:** I want to explain how a recommendation system worked by comparing it to how Netflix suggests movies based on user preferences. I use simple analogies, visuals and a viral jargon to ensure the stakeholders clearly understood the models value and logic.
+
+Sure, here is the evaluation:
+
 #### Score: 7/10
 
 - **Clarity**: The answer is clear and easy to understand. The use of a real-world example (Netflix's recommendation system) helps to illustrate the concept in a simple and relatable way. (9/10)
@@ -715,18 +723,19 @@ I recently had to explain the concept of matrix factorization, a technique used 
 ---
 
 ### Question 9
-**Q:** 9. How do you handle missing or corrupted data when working with ML/DL/NLP models, and what strategies do you use to mitigate their impact?
-**A:**  I handle messaging or corrupted data by using imputation techniques like need more replacement forward field of predictive models depending on context. I also use robust people's testing, outlier detection and pipe and variations to minimize downstream impact.
 
- Sure, I'd be happy to evaluate the answer to the given question.
+**Q:** 9. How do you handle missing or corrupted data when working with ML/DL/NLP models, and what strategies do you use to mitigate their impact?
+**A:** I handle messaging or corrupted data by using imputation techniques like need more replacement forward field of predictive models depending on context. I also use robust people's testing, outlier detection and pipe and variations to minimize downstream impact.
+
+Sure, I'd be happy to evaluate the answer to the given question.
 
 ### Scores
 
-* Clarity: 5/10
-* Relevance: 6/10
-* Accuracy: 5/10
-* Depth: 4/10
-* Overall: 5.2/10
+- Clarity: 5/10
+- Relevance: 6/10
+- Accuracy: 5/10
+- Depth: 4/10
+- Overall: 5.2/10
 
 ### Feedback and Improvements
 
@@ -755,25 +764,22 @@ _Overall, handling missing or corrupted data is an important part of working wit
 ---
 
 ### Question 10
+
 **Q:** 10. Can you tell us about any achievements or contributions you've made in the field of ML/DL/NLP, and how they've impacted your work or the work of your team?
-**A:** 
-
-
+**A:**
 
 ---
 
 ### Question 11
+
 **Q:** 11. How do you approach collaborating with cross-functional teams, such as data scientists or product managers, when working on ML/DL/NLP projects?
-**A:** 
-
-
+**A:**
 
 ---
 
 ### Question 12
+
 **Q:** 12. Can you tell us about any open-source projects or contributions you've made in the field of ML/DL/NLP, and how they've helped the community?
-**A:** 
-
-
+**A:**
 
 ---
