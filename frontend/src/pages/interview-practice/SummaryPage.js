@@ -126,7 +126,7 @@ const SummaryPage = () => {
     };
 
     axios
-      .post("http://localhost:8000/generate-report", reportData)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/generate-report`, reportData)
       .then((res) => {
         console.log("✅ Report generated:", res.data.path);
       })
