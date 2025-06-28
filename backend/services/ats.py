@@ -14,8 +14,13 @@ Respond in beautifully formatted Markdown using:
 - Line spacing
 - Professional tone with a direct voice
 
+
+
 Respond with four clearly separated sections:
 1. 🎯 Match Score
+    The overall match score for this resume should be present in model response in % 
+    Give result like:
+    Match Score: 85%
 2. ❌ Missing or Weak Skills
 3. 🧠 How to Improve
 4. 📝 Summary
