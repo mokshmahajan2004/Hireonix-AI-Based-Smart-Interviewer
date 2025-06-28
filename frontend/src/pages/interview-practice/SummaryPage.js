@@ -172,7 +172,7 @@ const SummaryPage = () => {
           </h2>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8 text-center justify-center">
             <div className="bg-slate-800 p-4 rounded-lg">
               <p className="text-lg font-bold">{responses.length}</p>
               <p className="text-sm text-gray-300">Total Questions</p>
@@ -184,12 +184,6 @@ const SummaryPage = () => {
             <div className="bg-slate-800 p-4 rounded-lg">
               <p className="text-lg font-bold">{unansweredCount}</p>
               <p className="text-sm text-red-300">Unanswered</p>
-            </div>
-            <div className="bg-slate-800 p-4 rounded-lg">
-              <p className="text-lg font-bold">{averageScore}/10</p>
-              <p className="text-sm text-yellow-300">
-                {getRating(averageScore)}
-              </p>
             </div>
           </div>
 
@@ -281,15 +275,15 @@ const SummaryPage = () => {
                 <p>
                   <strong>Answer:</strong> {item.answer || "-"}
                 </p>
-                <p>
+                {/* <p>
                   <strong>Score:</strong> {item.score ?? "Not Rated"}/10
-                </p>
+                </p> */}
                 <p>
                   <strong>Feedback:</strong> {item.feedback || "N/A"}
                 </p>
-                <p>
+                {/* <p>
                   <strong>Improvement:</strong> {item.improvement || "N/A"}
-                </p>
+                </p> */}
               </div>
             ))}
           </div>
@@ -303,7 +297,7 @@ const SummaryPage = () => {
         <p><strong>Areas to Improve:</strong> {weakAreas.length ? weakAreas.join(", ") : "None"}</p>
       </div> */}
 
-          <div className="bg-[#0f172a] border border-yellow-400 p-4 rounded-lg">
+          {/* <div className="bg-[#0f172a] border border-yellow-400 p-4 rounded-lg">
             <h3 className="text-lg font-bold text-yellow-400 mb-2">
               📌 AI Recommendations
             </h3>
@@ -312,7 +306,7 @@ const SummaryPage = () => {
                 <li key={i}>{r}</li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <p className="text-center text-xs text-gray-400 mt-6 italic">
             💬 This report was generated based on your mock interview session.
